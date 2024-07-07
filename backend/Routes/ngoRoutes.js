@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import getRoutes from "../Controllers/Ngo/getFunc/getRoutes.js";
-import postRoutes from "../Controllers/Ngo/postFunc/postRoutes.js";
-import putRoutes from "../Controllers/Ngo/putFunc/putRoutes.js";
-import deleteRoutes from "../Controllers/Ngo/DeleteFunc/deleteRoutes.js";
+import getRoutes from "../Controllers/Ngo/getController/getRoutes.js";
+import postRoutes from "../Controllers/Ngo/postController/postRoutes.js";
+import putRoutes from "../Controllers/Ngo/putController/putRoutes.js";
+import deleteRoutes from "../Controllers/Ngo/deleteController/deleteRoutes.js";
 
 const router = Router();
 
