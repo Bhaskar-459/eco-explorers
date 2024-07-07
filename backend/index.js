@@ -18,6 +18,10 @@ app.get('/', (req, res) => {
     }
 );
 
+app.get('/login', (req, res) => {
+    res.send("LOGIN PAGE");
+    }
+);
 app.use('/api',apiRoutes);
 
 mongoose.connect(process.env.MONGODB_URI,{
