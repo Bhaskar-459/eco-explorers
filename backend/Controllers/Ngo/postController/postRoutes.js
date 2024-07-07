@@ -1,8 +1,8 @@
 import Router from "express";
-import PostFunc from "../../../Models/Ngo/postFunc/postFunc.js";
+import PostRegisterFunc from "../../../Models/Ngo/postFunc/postFunc.js";
 
 const router = Router();
 
-router.post('/',PostFunc);
+router.post('/register',PostRegisterFunc);
 
 export default router;
