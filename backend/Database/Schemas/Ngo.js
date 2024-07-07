@@ -61,7 +61,10 @@ const ngoSchema = new mongoose.Schema({
         type : [history],
         default : [],    
     },
-    ngoCredits : Number,
+    ngoCredits : {
+        type : Number,
+        default : 0,
+    },
 
 });
 
