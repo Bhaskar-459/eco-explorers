@@ -5,13 +5,13 @@ const PostRegisterFunc = async (req, res) => {
     // console.log("PostRegisterFunc");    
     const personalInfo = {
         name : req.body.personalInfo.name,
-        email : req.body.personalInfo.email,
         phone : req.body.personalInfo.phone,
         address : req.body.personalInfo.address,
         password : req.body.personalInfo.password,
     }
     const Ngo = new ngo({
         id : req.body.id,
+        email : req.body.email,
         ngoPan : req.body.ngoPan,
         gcpPlatformId : req.body.gcpPlatformId,
         personalInfo : personalInfo,

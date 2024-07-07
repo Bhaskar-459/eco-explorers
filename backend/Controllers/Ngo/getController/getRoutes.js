@@ -12,6 +12,7 @@ const getNgoFunc = async (req,res) => {
 router.get('/',getFunc);
 router.get('/getNgo',getNgoFunc);
 
+
 // router.get('/getNgo',getNgoFunc);
 // router.get('/profile',getProfileFunc);
 
