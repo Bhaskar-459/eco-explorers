@@ -1,7 +1,8 @@
 import Router from "express";
-import getFunc from "../../../Models/Company/getFunc/getFunc.js";
+import getAllFunc from "../../../Models/Company/getFunc/getAllCompFunc.js";
 const router = Router();
 
-router.get('/',getFunc);
+router.get('/getAllComp',getAllFunc);
+
 
 export default router;
