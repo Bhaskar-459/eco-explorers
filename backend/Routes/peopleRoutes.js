@@ -1,8 +1,8 @@
 import { Router } from "express";
-import getRoutes from "../Controllers/People/getFunc/getRoutes.js";
-import postRoutes from "../Controllers/People/postFunc/postRoutes.js";
-import putRoutes from "../Controllers/People/putFunc/putRoutes.js";
-import deleteRoutes from "../Controllers/People/DeleteFunc/deleteRoutes.js";
+import getRoutes from "../Controllers/People/getController/getRoutes.js";
+import postRoutes from "../Controllers/People/postController/postRoutes.js";
+import putRoutes from "../Controllers/People/putController/putRoutes.js";
+import deleteRoutes from "../Controllers/People/deleteController/deleteRoutes.js";
 
 
 const router = Router();

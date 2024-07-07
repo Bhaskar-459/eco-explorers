@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import getRoutes from "../Controllers/Company/getFunc/getRoutes.js";
-import postRoutes from "../Controllers/Company/postFunc/postRoutes.js";
-import putRoutes from "../Controllers/Company/putFunc/putRoutes.js";
-import deleteRoutes from "../Controllers/Company/DeleteFunc/deleteRoutes.js";
+import getRoutes from "../Controllers/Company/getController/getRoutes.js";
+import postRoutes from "../Controllers/Company/postController/postRoutes.js";
+import putRoutes from "../Controllers/Company/putController/putRoutes.js";
+import deleteRoutes from "../Controllers/Company/deleteController/deleteRoutes.js";
 
 
 const router = Router();
