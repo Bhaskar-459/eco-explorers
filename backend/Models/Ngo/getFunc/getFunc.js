@@ -1,5 +1,7 @@
+import ngo from "../../../Database/Schemas/Ngo.js";
 const getFunc = async (req, res) => {
-    res.send('Hello from getFunc');
+    const Ngo = await ngo.find();
+    res.send(Ngo);
 }
 
 export default getFunc;

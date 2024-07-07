@@ -4,10 +4,6 @@ const personalInfo =new mongoose.Schema({
         type : String,
         required : true,
     },
-    email: {
-        type : String,
-        required : true,
-    },
     phone:{
         type : Number,
         required : true,
@@ -35,6 +31,10 @@ const history = new mongoose.Schema({
 });
 const ngoSchema = new mongoose.Schema({
     id :{
+        type : String,
+        required : true,
+    },
+    email : {  
         type : String,
         required : true,
     },
