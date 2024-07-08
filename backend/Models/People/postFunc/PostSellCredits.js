@@ -1,5 +1,5 @@
 import people from '../../../Database/Schemas/People.js';
-import UpadateTransaction from '../../Transactions/Transaction.js';
+import createTransaction from '../../Transactions/Transaction.js';
 import updateTransactionHistoryForPeople from '../../Transactions/UpdateTransactionHistoryForPeople.js';
 const postSellCreditsFunc = async (req, res) => {
     const { email, credits } = req.body;
@@ -15,7 +15,7 @@ const postSellCreditsFunc = async (req, res) => {
                 creditValue: credits*10,
                 NoOfCredits: credits
             }
-            await UpadateTransaction({TransactionObj});
+            await createTransaction({TransactionObj});
             await updateTransactionHistoryForPeople({TransactionObj}, person, "Sell");
 
             res.json(person);

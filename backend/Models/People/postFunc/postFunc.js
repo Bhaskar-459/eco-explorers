@@ -1,5 +1,8 @@
+import people from "../../../Database/Schemas/People.js";
 const PostFunc = async (req, res) => {
-    res.send('Hello from PostFunc');
+    const allPeople = await people.find();
+    res.json(allPeople);
+    
 }
 
 export default PostFunc;
