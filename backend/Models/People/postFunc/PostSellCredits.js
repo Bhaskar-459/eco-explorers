@@ -1,5 +1,6 @@
 import people from '../../../Database/Schemas/People.js';
-
+import UpadateTransaction from '../../Transactions/Transaction.js';
+import updateTransactionHistoryForPeople from '../../Transactions/UpdateTransactionHistoryForPeople.js';
 const postSellCreditsFunc = async (req, res) => {
     const { email, credits } = req.body;
     try {
@@ -7,6 +8,16 @@ const postSellCreditsFunc = async (req, res) => {
         if (person.portfolio.currentCredits >= credits) {
             person.portfolio.currentCredits -= credits;
             await person.save();
+            const TransactionObj = {
+                TransactionId: 1,
+                category: "People",
+                PersonName: person.Name,
+                creditValue: credits*10,
+                NoOfCredits: credits
+            }
+            await UpadateTransaction({TransactionObj});
+            await updateTransactionHistoryForPeople({TransactionObj}, person, "Sell");
+
             res.json(person);
         }
         else {
