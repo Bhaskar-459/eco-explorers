@@ -1,5 +1,7 @@
-const getFunc = async (req, res) => {
-    res.send('Hello from getFunc');
+import People from '../../../Database/Schemas/People.js';
+const GetFunc = async (req, res) => {
+    const allPersons = await People.find();
+    res.json(allPersons);
 }
 
-export default getFunc;
+export default GetFunc;
