@@ -9,7 +9,7 @@ const postPeopleRegisterFunc = async (req, res) => {
     const Person = new people({
         id : req.body.id,
         email : req.body.email,
-        displayName : req.body.displayName,
+        Name : req.body.Name,
         password : req.body.password,
         personalInfo : personalInfo,
     });

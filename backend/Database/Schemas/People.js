@@ -17,6 +17,11 @@ const transactionSchema = new mongoose.Schema({
     transactionCreditValue: Number,
     transactionNoOfCredits: Number,
     transactionDate: Date,
+    transactionType : {
+        type: String,
+        value: ['Buy', 'Sell'],
+        required: true,
+    }
 });
 
 const peopleSchema = new mongoose.Schema({
@@ -25,7 +30,7 @@ const peopleSchema = new mongoose.Schema({
         required: true,
     }
     ,
-    displayName: {
+    Name: {
         type: String,
         required: true,
     },
