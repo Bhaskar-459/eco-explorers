@@ -1,6 +1,7 @@
 import ngo from '../../../Database/Schemas/Ngo.js';
 
 const PostRegisterFunc = async (req, res) => {
+    console.log("new registration request")
     // res.send("PostRegisterFunc");
     // console.log("PostRegisterFunc");    
     const personalInfo = {
@@ -18,6 +19,7 @@ const PostRegisterFunc = async (req, res) => {
     });
     try {
         const savedNgo = await Ngo.save();
+        console.log(req.body)
         res.json(savedNgo);
     } catch (err) {
         res.json({ message: err });
