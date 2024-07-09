@@ -7,7 +7,7 @@ const Transactions = new mongoose.Schema({
     },
     category: {
         type: String,
-        value : ['Ngo', 'People','Company'],
+        enum: ['Ngo', 'People', 'Company'],
         required: true
     },
     PersonName: {
@@ -19,6 +19,15 @@ const Transactions = new mongoose.Schema({
         type: String,
         enum: ['People', 'Company', 'Ngo']
     },
+    TransactionDate: {
+        type: Date,
+        required: true
+    },
+    TransactionType: {
+        type: String,
+        enum: ['Buy', 'Sell'],
+        required: true
+    },
     creditValue: {
         type: Number,
         required: true
@@ -27,7 +36,7 @@ const Transactions = new mongoose.Schema({
         type: Number,
         required: true
     },
-
 });
-const TransactionsModel =  mongoose.model('Transactions', Transactions);
+
+const TransactionsModel = mongoose.model('Transactions', Transactions);
 export default TransactionsModel;
