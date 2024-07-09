@@ -1,4 +1,5 @@
 import Ngo from '../../../Database/Schemas/Ngo.js';
+import createTransaction from '../../Transactions/createTransaction.js';
 const PostsellCreditsFunc = async (req, res) => {
     const email = req.body.email;
     const creditprice = req.body.creditprice;
@@ -18,6 +19,16 @@ const PostsellCreditsFunc = async (req, res) => {
                 noOfCredits : noOfCredits,
             });
             await ngo.save();
+            const TransactionObj = {
+                TransactionId: 2,
+                category: "Ngo",
+                PersonName: ngo.personalInfo._id,
+                creditValue: creditprice,
+                NoOfCredits: noOfCredits,
+                TransactionDate: date,
+                TransactionType: "Sell"
+            };
+            await createTransaction({TransactionObj});
             res.send(ngo.transactionHistory);
         }
         else{
