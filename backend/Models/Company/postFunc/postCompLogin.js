@@ -1,7 +1,7 @@
 import company from "../../../Database/Schemas/Company.js";
 
 const PostLoginFunc = async (req, res) => {
-    const companyMail = req.body.companyMail;
+    const companyMail = req.body.email;
     const password = req.body.password;
     try {
         const Company = await company.findOne({ companyMail: companyMail });

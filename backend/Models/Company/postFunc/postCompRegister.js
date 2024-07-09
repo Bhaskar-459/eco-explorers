@@ -20,6 +20,7 @@ const PostRegisterFunc = async (req, res) => {
             companyMail: companyMail,
             password: password
         });
+        console.log(req.body);
         await newCompany.save();
         res.send(newCompany);
     }
