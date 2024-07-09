@@ -6,35 +6,34 @@ function SignupPeople() {
   const [formData, setFormData] = useState({
     id: '',
     email: '',
-    ngoPan: '',
-    gcpPlatformId: '',
+    Name: '',
+    password: '',
     personalInfo: {
-      name: '',
+      panCard: '',
       phone: '',
       address: '',
-      password: '',
-    },
+    }
   });
 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name in formData.personalInfo) {
-      setFormData({
-        ...formData,
-        personalInfo: { ...formData.personalInfo, [name]: value },
-      });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    setFormData(prevState => ({
+      ...prevState,
+      [name.includes('personalInfo') ? 'personalInfo' : '']: {
+        ...prevState.personalInfo,
+        [name.split('.')[1]]: value,
+      },
+      [name]: !name.includes('personalInfo') ? value : prevState[name],
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log(formData)
-      const response = await axios.post('http://localhost:5000/api/ngo/post/register', formData);
-      
+      const response = await axios.post('http://localhost:5000/api/people/post/register', formData);
+
       console.log("sent successfully");
       // Handle successful registration
     } catch (error) {
@@ -48,84 +47,32 @@ function SignupPeople() {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>ID</label>
-          <input
-            type="text"
-            name="id"
-            value={formData.id}
-            onChange={handleChange}
-            required
-          />
+          <label>ID:</label>
+          <input type="text" name="id" value={formData.id} onChange={handleChange} required />
         </div>
         <div>
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <label>Email:</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
         <div>
-          <label>NGO PAN</label>
-          <input
-            type="text"
-            name="ngoPan"
-            value={formData.ngoPan}
-            onChange={handleChange}
-            required
-          />
+          <label>Name:</label>
+          <input type="text" name="Name" value={formData.Name} onChange={handleChange} required />
         </div>
         <div>
-          <label>GCP Platform ID</label>
-          <input
-            type="text"
-            name="gcpPlatformId"
-            value={formData.gcpPlatformId}
-            onChange={handleChange}
-            required
-          />
+          <label>Password:</label>
+          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
         </div>
         <div>
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.personalInfo.name}
-            onChange={handleChange}
-            required
-          />
+          <label>PAN Card:</label>
+          <input type="text" name="personalInfo.panCard" value={formData.personalInfo.panCard} onChange={handleChange} required />
         </div>
         <div>
-          <label>Phone</label>
-          <input
-            type="text"
-            name="phone"
-            value={formData.personalInfo.phone}
-            onChange={handleChange}
-            required
-          />
+          <label>Phone:</label>
+          <input type="text" name="personalInfo.phone" value={formData.personalInfo.phone} onChange={handleChange} required />
         </div>
         <div>
-          <label>Address</label>
-          <input
-            type="text"
-            name="address"
-            value={formData.personalInfo.address}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.personalInfo.password}
-            onChange={handleChange}
-            required
-          />
+          <label>Address:</label>
+          <input type="text" name="personalInfo.address" value={formData.personalInfo.address} onChange={handleChange} required />
         </div>
         <button type="submit">Register</button>
       </form>
