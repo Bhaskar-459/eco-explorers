@@ -2,26 +2,21 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
-  const [showOptions, setShowOptions] = useState(false);
-  const [userType, setUserType] = useState('');
 
-  const handleGreenCreditsClick = () => {
-    setShowOptions(true);
-  };
+  const [selectedValue, setSelectedValue] = useState('');
 
-  const handleUserTypeClick = (type) => {
-    setUserType(type);
-    setShowOptions(false);
-    // Navigate based on user type
-    if (type === 'ngo') {
-      window.location.href = '/ngo';
-    } else if (type === 'company') {
-      window.location.href = '/company';
-    } else if (type === 'commonPeople') {
-      window.location.href = '/common-people';
+  const handleSelectChange = (event) => {
+    setSelectedValue(event.target.value);
+    if(selectedValue === 'NGO'){
+      window.location.href = '/loginNgo';
+    } else if(selectedValue === 'USER'){  
+      window.location.href = '/loginPeople';
+    } else if(selectedValue === 'ORGANISATION'){
+      window.location.href = '/loginCompany';
     }
   };
 
+  
   return (
     <div className="home-page">
       <header className="header">
@@ -33,7 +28,13 @@ const HomePage = () => {
             <li><a href="#benefits">Benefits</a></li>
             <li><a href="#contact">Contact Us</a></li>
             <li><a href="#privacy-policy">Privacy Policy</a></li>
-            <li><Link to="/login">Login/Register</Link></li>
+            <li><select name="org" id="org-select" onChange={handleSelectChange}>
+              <option value="">Select an option</option>
+              <option value="NGO">NGO</option>
+              <option value="USER">USER</option>
+              <option value="ORGANISATION">ORGANISATION</option>
+            </select>
+            </li>
           </ul>
         </nav>
       </header>
@@ -41,15 +42,6 @@ const HomePage = () => {
         <div className="background">
           <h1>Welcome to Green Trade Exchange</h1>
           <p>Your centralized platform for trading green credits.</p>
-          <button onClick={handleGreenCreditsClick}>Green Credits</button>
-          <button>Eco-Friendly Products</button>
-          {showOptions && (
-            <div className="options">
-              <button onClick={() => handleUserTypeClick('ngo')}>NGO</button>
-              <button onClick={() => handleUserTypeClick('company')}>Company</button>
-              <button onClick={() => handleUserTypeClick('commonPeople')}>Common People</button>
-            </div>
-          )}
         </div>
       </main>
       <section id="about">
