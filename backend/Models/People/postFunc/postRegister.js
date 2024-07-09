@@ -14,11 +14,13 @@ const postPeopleRegisterFunc = async (req, res) => {
         personalInfo : personalInfo,
     });
     try {
+        console.log("sent a request");
         const savedPerson = await Person.save();
+        console.log(savedPerson);
         res.json(savedPerson);
     }
     catch (error) {
-        return res.status(500).json({ message: error.message });
+        return res.status(500);
     }
 }
 
