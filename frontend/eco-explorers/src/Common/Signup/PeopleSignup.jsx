@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function SignupNgo() {
+function SignupPeople() {
   const [formData, setFormData] = useState({
     id: '',
     email: '',
@@ -133,4 +133,4 @@ function SignupNgo() {
   );
 }
 
-export default SignupNgo;
+export default SignupPeople;

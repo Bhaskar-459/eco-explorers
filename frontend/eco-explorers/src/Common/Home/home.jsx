@@ -3,15 +3,13 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => {
 
-  const [selectedValue, setSelectedValue] = useState('');
-
   const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
-    if(selectedValue === 'NGO'){
+    const value = event.target.value;
+    if (value === 'NGO') {
       window.location.href = '/loginNgo';
-    } else if(selectedValue === 'USER'){  
+    } else if (value === 'USER') {
       window.location.href = '/loginPeople';
-    } else if(selectedValue === 'ORGANISATION'){
+    } else if (value === 'ORGANISATION') {
       window.location.href = '/loginCompany';
     }
   };
@@ -29,7 +27,7 @@ const HomePage = () => {
             <li><a href="#contact">Contact Us</a></li>
             <li><a href="#privacy-policy">Privacy Policy</a></li>
             <li><select name="org" id="org-select" onChange={handleSelectChange}>
-              <option value="">Select an option</option>
+              <option value="select">Select an option</option>
               <option value="NGO">NGO</option>
               <option value="USER">USER</option>
               <option value="ORGANISATION">ORGANISATION</option>

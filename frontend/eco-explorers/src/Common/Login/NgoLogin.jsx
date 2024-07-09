@@ -1,6 +1,7 @@
 // components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function LoginNgo() {
   const [email, setEmail] = useState('');
@@ -51,7 +52,9 @@ function LoginNgo() {
         </div>
         <button type="submit">Login</button>
       </form>
+      <Link to="/registerNgo">Register</Link>
     </div>
+
   );
 }
 
