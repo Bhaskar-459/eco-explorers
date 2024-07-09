@@ -2,6 +2,7 @@ import ngo from '../../../Database/Schemas/Ngo.js';
 const PostLoginFunc = async (req, res) => { 
     const email = req.body.email;
     const password = req.body.password;
+    console.log(password);
     try {
         const Ngo = await ngo.findOne({ email : email }); 
         console.log(Ngo)
@@ -12,7 +13,8 @@ const PostLoginFunc = async (req, res) => {
             console.log("Login Successful", Ngo.personalInfo.password, password);
             res.send(Ngo);
         } else {
-            res.send("Invalid Credentials").status(404);
+            console.log("Invalid Credentials", Ngo.personalInfo.password, password);
+            res.status(404).send("Invalid Credentials");
         }
     }   catch (err) {    
         res.status(400).send(err);     
