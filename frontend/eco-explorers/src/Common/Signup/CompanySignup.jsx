@@ -1,45 +1,36 @@
 // components/Registration.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 function SignupCompany() {
   const [formData, setFormData] = useState({
     id: '',
-    email: '',
-    ngoPan: '',
-    gcpPlatformId: '',
-    personalInfo: {
-      name: '',
-      phone: '',
-      address: '',
-      password: '',
-    },
+    displayName: '',
+    companyPan: '',
+    creditsAvailable: 0, // Assuming it's a number
+    companyMail: '',
+    password: '',
   });
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name in formData.personalInfo) {
-      setFormData({
-        ...formData,
-        personalInfo: { ...formData.personalInfo, [name]: value },
-      });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(formData)
-      const response = await axios.post('http://localhost:5000/api/ngo/post/register', formData);
+      const response = await axios.post('http://localhost:5000/api/company/post/register', formData);
       
-      console.log("sent successfully");
-      // Handle successful registration
+      // Handle successful registration, e.g., show success message, redirect, etc.
+      console.log('Registration successful', response.data);
+      // Example: redirect to a thank you page or login page
     } catch (error) {
       // Handle errors
-      alert('Registration failed: ' + error.response.data.message);
+      console.error('Registration failed', error.response?.data || error.message);
+      // Example: show error message to the user
     }
   };
 
@@ -58,61 +49,41 @@ function SignupCompany() {
           />
         </div>
         <div>
-          <label>Email</label>
+          <label>Display Name</label>
+          <input
+            type="text"
+            name="displayName"
+            value={formData.displayName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Company PAN</label>
+          <input
+            type="text"
+            name="companyPan"
+            value={formData.companyPan}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Credits Available</label>
+          <input
+            type="number"
+            name="creditsAvailable"
+            value={formData.creditsAvailable}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Company Email</label>
           <input
             type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>NGO PAN</label>
-          <input
-            type="text"
-            name="ngoPan"
-            value={formData.ngoPan}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>GCP Platform ID</label>
-          <input
-            type="text"
-            name="gcpPlatformId"
-            value={formData.gcpPlatformId}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.personalInfo.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Phone</label>
-          <input
-            type="text"
-            name="phone"
-            value={formData.personalInfo.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Address</label>
-          <input
-            type="text"
-            name="address"
-            value={formData.personalInfo.address}
+            name="companyMail"
+            value={formData.companyMail}
             onChange={handleChange}
             required
           />
@@ -122,13 +93,14 @@ function SignupCompany() {
           <input
             type="password"
             name="password"
-            value={formData.personalInfo.password}
+            value={formData.password}
             onChange={handleChange}
             required
           />
         </div>
         <button type="submit">Register</button>
       </form>
+      <Link to="/loginCompany">Login</Link>
     </div>
   );
 }

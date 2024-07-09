@@ -1,6 +1,7 @@
 // components/Registration.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function SignupNgo() {
   const [formData, setFormData] = useState({
@@ -129,6 +130,7 @@ function SignupNgo() {
         </div>
         <button type="submit">Register</button>
       </form>
+      <Link to="/loginNgo">Login</Link>
     </div>
   );
 }
