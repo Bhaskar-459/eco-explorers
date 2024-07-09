@@ -52,7 +52,7 @@ function LoginPeople() {
         </div>
         <button type="submit">Login</button>
       </form>
-      <Link to="/registerCompany">Register</Link>
+      <Link to="/registerPeople">Register</Link>
     </div>
 
   );
