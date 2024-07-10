@@ -26,6 +26,11 @@ const companySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isRegisteredOnGCP: {
+        type: Boolean,
+        enum : [true, false],
+        default: false
+    },
 });
 
 const company = mongoose.model('Company', companySchema);
