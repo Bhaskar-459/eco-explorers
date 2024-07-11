@@ -16,7 +16,10 @@ const historySchema = new mongoose.Schema({
 });
 
 const companyToSellSchema = new mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Company",   
+    },
     email: {  
         type: String,
         required: true,
