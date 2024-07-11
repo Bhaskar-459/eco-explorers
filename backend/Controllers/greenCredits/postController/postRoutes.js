@@ -1,9 +1,9 @@
 import Router from "express";
 
-import postFunc from "../../../Models/GreenCredits/postFunc/postFunc.js";
+import postUpdateValueFunc from "../../../Models/greenCredits/postFunc/postUpdateValueFunc.js";
 
 const router = Router();
 
-router.post('/',postFunc);
+router.post('/updateValue',postUpdateValueFunc);
 
 export default router;

@@ -1,7 +1,7 @@
 import Router from "express";
-import getFunc from "../../../Models/GreenCredits/getFunc/getFunc.js";
+import getCurrentValueFunc from "../../../Models/greenCredits/getFunc/getCurrentValueFunc.js";
 
 const router = Router();
-router.get('/get',getFunc);
+router.get('/getValue',getCurrentValueFunc);
 
 export default router;

@@ -1,11 +1,30 @@
 import mongoose from "mongoose";
 
+const entityType = ('Company', 'User', 'Admin');
+
+const List = new mongoose.Schema({
+    id : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : entityType
+    },
+    name : {
+        type : String,
+    },
+    price : {
+        type : Number,
+    }
+});
+
 const greenCreditSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    phone: Number,
-    address: String,
-    password: String,
+    currValue : {
+       type : Number, 
+    },
+    BuyList :{
+        type : [List],
+    },
+    SellList :{
+        type : [List],
+    }
 });
 
 const greenCredit = mongoose.model('GreenCredit', greenCreditSchema);
