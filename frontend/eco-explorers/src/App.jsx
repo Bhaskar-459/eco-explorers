@@ -7,8 +7,9 @@ import LoginPeople from './Common/Login/PeopleLogin';
 import SignupNgo from './Common/Signup/NgoSignup';
 import SignupCompany from './Common/Signup/CompanySignup';
 import SignupPeople from './Common/Signup/PeopleSignup';
-import NgoPage from './components/Ngo/HomeScreen';
+// import NgoPage from './components/Ngo/HomeScreen';
 import './App.css';
+import NgoHome from './components/Ngo/NgoHome';
 
 
 const App = () => {
@@ -22,7 +23,8 @@ const App = () => {
         <Route path="/registerNgo" element={<SignupNgo />} />
         <Route path="/registerCompany" element={<SignupCompany />} />
         <Route path="/registerPeople" element={<SignupPeople />} />
-        <Route path="/ngo" element={<NgoPage />} />
+        <Route path="/ngo" element={<NgoHome />} />
+        {/* <Route path="/ngo" element={<NgoPage />} /> */}
       </Routes>
     </Router>
   );
