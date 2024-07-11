@@ -28,7 +28,7 @@ const companyToSellSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    Status: {  // Corrected field name to be consistent
+    Status: { 
         type: String,
         enum: ["Pending", "Approved", "Rejected"],
         default: "Pending",

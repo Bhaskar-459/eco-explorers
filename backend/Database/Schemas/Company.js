@@ -1,6 +1,19 @@
 import mongoose from "mongoose";
 
-
+const history = new mongoose.Schema({
+    id : {
+       type : String,
+    },
+    date : {
+        type : Date,
+    },
+    creditprice : {
+        type : Number,
+    },
+    noOfCredits : {
+        type : Number,
+    }
+});
 const companySchema = new mongoose.Schema({
     id: {
         type: String,
@@ -31,6 +44,11 @@ const companySchema = new mongoose.Schema({
         enum : [true, false],
         default: false
     },
+    transactionHistory: {
+        type: [history],
+        default: [],
+    },
+
 });
 
 const company = mongoose.model('Company', companySchema);
