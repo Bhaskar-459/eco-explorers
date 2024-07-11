@@ -18,6 +18,9 @@ function LoginNgo() {
       if (response.status === 200) {
         //Handle successful login, e.g., store user data, redirect, etc.
         alert('Login successful');
+        localStorage.setItem("password", password);
+
+        window.location.href = '/ngo';
       } else if(response.status === 404){
         // Handle failed login
         alert('Invalid credentials'); 
