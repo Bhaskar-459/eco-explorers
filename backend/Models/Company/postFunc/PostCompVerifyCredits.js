@@ -16,6 +16,8 @@ const postCompSellCredits = async (req, res) => {
         }
         company.GeneratedCredits +=100;
         await company.save();
+        res.status(200)
+            .json({ message: "Credits added successfully" });
     }
     catch (error) {
         return res.status(500)
