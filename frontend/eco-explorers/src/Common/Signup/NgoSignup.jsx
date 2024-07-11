@@ -29,12 +29,15 @@ function SignupNgo() {
       setFormData({ ...formData, [name]: value });
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("hi");
+    const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
+    console.log(base_url);
     try {
       console.log(formData)
-      const response = await axios.post('http://localhost:5000/api/ngo/post/register', formData);
+      const response = await axios.post(`${base_url}/api/ngo/post/register`, formData);
       
       console.log("sent successfully");
       // Handle successful registration
