@@ -2,11 +2,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './login.css';
 
 function LoginCompany() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -29,8 +31,11 @@ function LoginCompany() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="container">
+    <div className="login-box">
+      <h3>Welcome to..</h3>
+      <h1>Green Trade Exchange</h1>
+      <h2><span className='L_login'>L</span>ogin</h2>
       <form onSubmit={handleLogin}>
         <div>
           <label>Email</label>
@@ -39,6 +44,7 @@ function LoginCompany() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder='Enter your email address'
           />
         </div>
         <div>
@@ -48,11 +54,19 @@ function LoginCompany() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Enter your password"
           />
+          <Link to="/forgotPassword" className="forgot-password">Forgot Password</Link>
         </div>
-        <button type="submit">Login</button>
+          <button type="submit" disabled={loading || !email || !password}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
       </form>
-      <Link to="/registerCompany">Register</Link>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div className="register-link">
+        No Account? <Link to="/registerCompany">Sign up</Link>
+      </div>
+    </div>
     </div>
 
   );
