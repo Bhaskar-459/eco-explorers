@@ -10,6 +10,7 @@ import SignupPeople from './Common/Signup/PeopleSignup';
 // import NgoPage from './components/Ngo/HomeScreen';
 import './App.css';
 import NgoHome from './components/Ngo/NgoHome';
+import NgoProfile from './components/Ngo/NgoProfile';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/registerPeople" element={<SignupPeople />} />
         <Route path="/ngo" element={<NgoHome />} />
         {/* <Route path="/ngo" element={<NgoPage />} /> */}
+        <Route path="/my-profile" element={<NgoProfile />} />
       </Routes>
     </Router>
   );

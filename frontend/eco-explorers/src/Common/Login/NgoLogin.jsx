@@ -32,7 +32,7 @@ function LoginNgo() {
   };
 
   return (
-    <div>
+    <div className='LoginContainer'>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <div>
