@@ -31,7 +31,7 @@ function LoginCompany() {
   };
 
   return (
-    <div className="container">
+    <div className=" LoginContainer">
     <div className="login-box">
       <h3>Welcome to..</h3>
       <h1>Green Trade Exchange</h1>
