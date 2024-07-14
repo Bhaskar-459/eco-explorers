@@ -12,7 +12,7 @@ import './App.css';
 import NgoHome from './components/Ngo/NgoHome';
 import NgoProfile from './components/Ngo/NgoProfile';
 import CompanyHome from './components/Company/CompanyHome';
-
+import VerifyNgoCredits from './components/Ngo/NgoVerify';
 
 const App = () => {
   return (
@@ -29,6 +29,8 @@ const App = () => {
         <Route path="/company" element={<CompanyHome />} />
         {/* <Route path="/ngo" element={<NgoPage />} /> */}
         <Route path="/my-profile" element={<NgoProfile />} />
+        <Route path="/verify-ngo-credits" element={<VerifyNgoCredits />} />
+
       </Routes>
     </Router>
   );

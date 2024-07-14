@@ -10,6 +10,7 @@ const Dashboard = ({ children }) => {
           <li><Link to="/my-profile">My Profile</Link></li>
           <li><Link to="/history">History</Link></li>
           <li><Link to="/projects">Projects</Link></li>
+          <li><Link to="/verify-ngo-credits">Verify Credits</Link></li>
         </ul>
       </nav>
       <div className="content">
