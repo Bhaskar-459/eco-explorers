@@ -1,6 +1,6 @@
 import Ngo from '../../../Database/Schemas/Ngo.js';
 import createTransaction from '../../Transactions/createTransaction.js';
-import updateValueFunc from '../../greenCredits/CalculateValue/UpdateValueFunc.js';
+// import updateValueFunc from '../../greenCredits/CalculateValue/UpdateValueFunc.js';
 const PostsellCreditsFunc = async (req, res) => {
     const email = req.body.email;
     const creditprice = req.body.creditprice;
@@ -30,8 +30,8 @@ const PostsellCreditsFunc = async (req, res) => {
                 TransactionType: "Sell"
             };
             await createTransaction({TransactionObj});
-            type = "sell";
-            await updateValueFunc(noOfCredits,creditprice,type);
+            const type = "sell";
+            // await updateValueFunc(noOfCredits,creditprice,type);
             res.send(ngo.transactionHistory);
         }
         else{

@@ -1,25 +1,57 @@
 import mongoose from "mongoose";
 
 const personSchema = new mongoose.Schema({
-    panCard: String,
-    phone: Number,
-    address: String,
-
+    panCard: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: Number,
+        required: true,
+    },
+    address: {
+        type: String,
+        required: true,
+    },
 });
 
 const portfolioSchema = new mongoose.Schema({
-    walletAmount: Number,
-    currentCredits: Number,
+    walletAmount: {
+        type: Number,
+        default: 0,
+    },
+    currentCredits: {
+        type: Number,
+        default: 0,
+    },
 });
 
 const transactionSchema = new mongoose.Schema({
-    transactionId: String,
-    transactionCreditValue: Number,
-    transactionNoOfCredits: Number,
-    transactionDate: Date,
-    transactionType : {
+    transactionId: {
         type: String,
-        value: ['Buy', 'Sell'],
+        required: true,
+    },
+    transactionCreditValue: {
+        type: Number,
+        required: true,
+    },
+    transactionNoOfCredits: {
+        type: Number,
+        required: true,
+    },
+    transactionDate: {
+        type: Date,
+        default: Date.now,
+        required: true,
+    },
+    transactionType: {
+        type: String,
+        enum: ['Buy', 'Sell'],
+        required: true,
+    },
+    transactionStatus: {
+        type: String,
+        enum: ['Pending', 'Executed'],
         required: true,
     }
 });
@@ -28,8 +60,7 @@ const peopleSchema = new mongoose.Schema({
     id: {
         type: String,
         required: true,
-    }
-    ,
+    },
     Name: {
         type: String,
         required: true,
@@ -37,19 +68,18 @@ const peopleSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
     },
-    personalInfo: 
-    {
-        type:personSchema,
+    personalInfo: {
+        type: personSchema,
         required: true,
     },
-    portfolio: 
-    {
-        type:portfolioSchema,
-        default: {walletAmount: 0, currentCredits: 0},
+    portfolio: {
+        type: portfolioSchema,
+        default: { walletAmount: 0, currentCredits: 0 },
     },
-    transactionSchema: {
-        type :[transactionSchema],
+    transactions: {
+        type: [transactionSchema],
         default: [],
     },
     password: {
@@ -58,6 +88,6 @@ const peopleSchema = new mongoose.Schema({
     },
 });
 
-const people = mongoose.model('People', peopleSchema);
+const People = mongoose.model('People', peopleSchema);
 
-export default people;
+export default People;
