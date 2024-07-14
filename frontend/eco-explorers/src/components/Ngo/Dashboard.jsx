@@ -6,16 +6,16 @@ const Dashboard = ({ children }) => {
     <div className="dashboard">
       <nav className="sidebar">
         <ul>
-          <li><Link to="/">Home</Link></li>
+          <li><Link to="/ngo">Home</Link></li>
           <li><Link to="/my-profile">My Profile</Link></li>
           <li><Link to="/history">History</Link></li>
           <li><Link to="/projects">Projects</Link></li>
           <li><Link to="/verify-ngo-credits">Verify Credits</Link></li>
         </ul>
       </nav>
-      <div className="content">
+      {/* <div className="content">
         {children}
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,11 +1,14 @@
 import React from 'react';
 import Nav from "./nav";
-
+import Header from './header';
 const HomePage = () => {
   
   return (
     <div className="home-page">
+      <div className="head">
+      <Header />
       <Nav />
+      </div>
       <main className="main-content">
         <div className="background">
           <h1>Welcome to Green Trade Exchange</h1>
