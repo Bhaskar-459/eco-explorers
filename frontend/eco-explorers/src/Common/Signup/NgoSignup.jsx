@@ -53,7 +53,7 @@ function SignupNgo() {
 
   return (
     <div>
-      <h2>Register</h2>
+      <h2>Ngo Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>ID</label>

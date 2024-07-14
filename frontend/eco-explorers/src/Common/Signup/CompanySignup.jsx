@@ -42,7 +42,7 @@ function SignupCompany() {
 
   return (
     <div>
-      <h2>Register</h2>
+      <h2>Company Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>ID</label>

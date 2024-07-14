@@ -50,7 +50,7 @@ function SignupPeople() {
 
   return (
     <div>
-      <h2>Register</h2>
+      <h2>People Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>ID:</label>
