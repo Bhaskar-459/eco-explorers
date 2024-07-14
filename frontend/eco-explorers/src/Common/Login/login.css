@@ -11,14 +11,14 @@
   height: 100vh;
 }
 
-.container {
+/* .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 1000px;
   padding: 20px;
-}
+} */
 
 .login-box {
   background-color: white;
