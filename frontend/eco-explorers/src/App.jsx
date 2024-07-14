@@ -11,6 +11,7 @@ import SignupPeople from './Common/Signup/PeopleSignup';
 import './App.css';
 import NgoHome from './components/Ngo/NgoHome';
 import NgoProfile from './components/Ngo/NgoProfile';
+import CompanyHome from './components/Company/CompanyHome';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/registerCompany" element={<SignupCompany />} />
         <Route path="/registerPeople" element={<SignupPeople />} />
         <Route path="/ngo" element={<NgoHome />} />
+        <Route path="/company" element={<CompanyHome />} />
         {/* <Route path="/ngo" element={<NgoPage />} /> */}
         <Route path="/my-profile" element={<NgoProfile />} />
       </Routes>

@@ -19,9 +19,13 @@ const ProfileDetails =(props) =>  {
       </div>
       <div className='listDetailsContainer'>
         <div className='personalProfileDetails'>
-          <h2>{ngoDetails.personalInfo.name}</h2>
+          <p>Name:</p>
+          <p>{ngoDetails.personalInfo.name}</p>
+          <p>Phone No:</p>
           <p>{ngoDetails.personalInfo.phone}</p>
+          <p>Address:</p>
           <p>{ngoDetails.personalInfo.address}</p>
+          <p>Email:</p>
           <p>{ngoDetails.email}</p>
         </div>
         <div className='financialProfileDetails'>
