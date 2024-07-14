@@ -40,7 +40,7 @@ function LoginCompany() {
       <div className="login-box">
         <h3>Welcome to..</h3>
         <h1>Green Trade Exchange</h1>
-        <h2><span className='L_login'>L</span>ogin</h2>
+        <h2><span className='L_login'>C</span>ompany<span className='L_login'>L</span>ogin</h2>
         <form onSubmit={handleLogin}>
           <div>
             <label>Email</label>
