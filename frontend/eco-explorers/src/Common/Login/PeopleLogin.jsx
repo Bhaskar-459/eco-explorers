@@ -9,11 +9,12 @@ function LoginPeople() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/people/post/login', {
+      const response = await axios.post(`${base_url}/api/people/post/login`, {
         email,
         password,
       });
@@ -21,8 +22,8 @@ function LoginPeople() {
       if (response.status === 200) {
         //Handle successful login, e.g., store user data, redirect, etc.
         alert('Login successful');
-        localStorage.setItem("password", password);
-        window.location.href = '/company';
+        localStorage.setItem("peopleDetails", JSON.stringify(response.data));
+        window.location.href = '/people';
         
       } else if (response.status === 404) {
         // Handle failed login

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 
 function SignupPeople() {
+  const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
   const [formData, setFormData] = useState({
     id: '',
     email: '',
@@ -33,9 +34,13 @@ function SignupPeople() {
     e.preventDefault();
     try {
       console.log(formData)
-      const response = await axios.post('http://localhost:5000/api/people/post/register', formData);
-
+      const response = await axios.post(`${base_url}/api/people/post/register`, formData);
+      if(response.status===200){
       console.log("sent successfully");
+      localStorage.setItem("peopleDetails",JSON.stringify(response.data))
+      alert('Registration successful');
+      window.location.href = '/people';
+      }
       // Handle successful registration
     } catch (error) {
       // Handle errors

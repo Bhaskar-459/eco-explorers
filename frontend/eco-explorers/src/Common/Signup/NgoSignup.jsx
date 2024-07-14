@@ -38,8 +38,12 @@ function SignupNgo() {
     try {
       console.log(formData)
       const response = await axios.post(`${base_url}/api/ngo/post/register`, formData);
-      
+      if(response.status===200){
       console.log("sent successfully");
+      alert('Registration successful');
+      localStorage.setItem("ngoDetails",JSON.stringify(response.data))
+      window.location.href = '/ngo';
+      }
       // Handle successful registration
     } catch (error) {
       // Handle errors
