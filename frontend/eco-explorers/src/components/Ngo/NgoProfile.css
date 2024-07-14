@@ -1,0 +1,71 @@
+*,*::before,*::after 
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profileDetailsContainer
+{
+    background-color: #45a049;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 30vh;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+.profileImage
+{
+    justify-content: left;
+    height: 100%;
+    width:20%;
+    /* background-color: blue; */
+}
+.profileImage img
+{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.listDetailsContainer
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 100%;
+    width: 100%;
+    flex-grow:1;
+
+    /* background-color: red; */
+}
+.personalprofileDetails
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items:stretch;
+
+    width: 100%;
+
+    /* background-color: yellow; */
+}
+.financialProfileDetails
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items:stretch;
+    width: 100%;
+    /* background-color: green; */
+}
+.editButton
+{
+    align-self: flex-end;
+    margin: 10px;
+    width:fit-content;
+    border-radius: 20px;
+}

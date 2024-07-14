@@ -21,7 +21,7 @@ function LoginNgo() {
       if (response.status === 200) {
         //Handle successful login, e.g., store user data, redirect, etc.
         alert('Login successful');
-        localStorage.setItem("password", password);
+        localStorage.setItem("userDetails", JSON.stringify(response.data));
 
         window.location.href = '/ngo';
       } else if(response.status === 404){

@@ -1,9 +1,11 @@
 import React from 'react';
 import Dashboard from './Dashboard';
 import Nav from '../../Common/Home/nav';
-import './NgoHome.css';
+import ProfileDetails from './ProfileDetails';
+import EditFormProfile from './EditFormProfile';    
+import './NgoProfile.css';
 
-function NgoHome() {
+function NgoProfile() {
     return (
         <div className="App">
         <Nav />
@@ -11,7 +13,7 @@ function NgoHome() {
             <Dashboard className="dashboard" />
             <div className="content">
                 <ProfileDetails />
-                <button>Edit Profile</button>
+                <button className='editButton'>Edit Profile</button>
                 <EditFormProfile />
             </div>
         </div>
@@ -19,4 +21,4 @@ function NgoHome() {
     );
 }
 
-export default NgoHome;
+export default NgoProfile;
