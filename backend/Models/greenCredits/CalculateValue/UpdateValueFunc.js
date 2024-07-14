@@ -1,9 +1,11 @@
 import greenCredits from '../../../Database/Schemas/GreenCredit.js';
-const postFunc = async (req, res) => {
+import CalculateValueFunc from './CalculateFunc.js';
+const postFunc = async (noOfCredits,creditprice,type) => {
     try {
-        const { value } = req.body;
+        value = greenCredits.currValue;
+        finalValue = CalculateValueFunc(value, noOfCredits, creditprice,type);
         const GreenCredits = new greenCredits({
-            currValue: value
+            currValue: finalValue
         });
         await GreenCredits.save();
         res.status(200).json(GreenCredits.currValue);
