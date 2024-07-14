@@ -2,14 +2,17 @@
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background: url('assets/background.jpg') no-repeat center center fixed;
+  background: url('../../assets/bgm.jpg') no-repeat center center fixed;
   background-size: cover;
+  background-position: center; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+
+
 
 /* .container {
   display: flex;
