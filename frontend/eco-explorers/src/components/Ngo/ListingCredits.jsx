@@ -6,7 +6,8 @@ const ListingCredits = () => {
   const [password, setPassword] = useState('');
   const [creditsToSell, setCreditsToSell] = useState('');
   const [price, setPrice] = useState('');
-  let pass = localStorage.getItem('password');
+  let ngoDetails=JSON.parse(localStorage.getItem("ngoDetails"));
+  let pass = ngoDetails.personalInfo.password;
 
   const handleSellClick = () => {
     setShowPopup(true);

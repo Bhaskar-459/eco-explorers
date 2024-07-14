@@ -2,13 +2,19 @@
   font-family: Arial, sans-serif;
 }
 
-.header {
+.navHead {
   background-color: #4CAF50;
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   color: white;
+  height:10vh;
+}
+.head{
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }
 
 .logo {
@@ -24,7 +30,8 @@
 }
 
 .nav li {
-  margin: 0 10px;
+  margin: 0 20px;
+  
 }
 
 .nav a {
@@ -57,11 +64,13 @@
 .background h1 {
   font-size: 36px;
   margin-bottom: 20px;
+  color: #45a049;
 }
 
 .background p {
   font-size: 18px;
   margin-bottom: 20px;
+  color: #45a049;
 }
 
 .background button {
@@ -257,12 +266,7 @@ p a:hover {
   font-family: Arial, sans-serif;
 }
 
-.header {
-  background-color: #4CAF50;
-  padding: 10px;
-  color: white;
-  text-align: center;
-}
+
 
 .content {
   display: flex;

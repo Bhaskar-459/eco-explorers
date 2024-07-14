@@ -1,0 +1,35 @@
+/* src/common/home/Header.css */
+
+.titleBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 12vh; /* 10% of viewport height */
+    padding: 0 20px; /* Optional padding for spacing */
+    background-color: #bdd7db; /* Example background color */
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    gap: 20%; /* Spacing between logos */
+    margin-top: 5px;
+    margin-left: 3%;
+    margin-bottom: 10px;
+}
+
+.logos img {
+    /* height: 80%; Adjust height as needed, 80% of the titleBar height */
+    margin-top: 5%;
+    max-height: 8vh; 
+    margin-right: 10px; /* Spacing between logos */
+}
+
+.gte {
+    font-size: 1.5em; /* Adjust size as needed */
+    color: #006400; /* Example color for the text */
+}
+
+.green {
+    margin: 0; /* Remove default margin */
+}
