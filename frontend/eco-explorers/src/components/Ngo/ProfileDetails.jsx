@@ -6,11 +6,11 @@ import React, {useState } from 'react'
 
 const ProfileDetails =(props) =>  {
 
-  let userDetails=JSON.parse(localStorage.getItem("userDetails"));
+  let ngoDetails=JSON.parse(localStorage.getItem("ngoDetails"));
   
   
 
-  console.log(userDetails);
+  console.log(ngoDetails);
   return (
     
     <div className='profileDetailsContainer'>
@@ -19,10 +19,10 @@ const ProfileDetails =(props) =>  {
       </div>
       <div className='listDetailsContainer'>
         <div className='personalProfileDetails'>
-          <h2>{userDetails.personalInfo.name}</h2>
-          <p>{userDetails.personalInfo.phone}</p>
-          <p>{userDetails.personalInfo.address}</p>
-          <p>{userDetails.email}</p>
+          <h2>{ngoDetails.personalInfo.name}</h2>
+          <p>{ngoDetails.personalInfo.phone}</p>
+          <p>{ngoDetails.personalInfo.address}</p>
+          <p>{ngoDetails.email}</p>
         </div>
         <div className='financialProfileDetails'>
           <div className='noofCredits'></div>

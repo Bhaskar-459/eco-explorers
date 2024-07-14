@@ -9,11 +9,12 @@ function LoginCompany() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/company/post/login', {
+      const response = await axios.post(`${base_url}/api/company/post/login`, {
         email,
         password,
       });
@@ -21,7 +22,7 @@ function LoginCompany() {
       if (response.status === 200) {
         //Handle successful login, e.g., store user data, redirect, etc.
         alert('Login successful');
-        localStorage.setItem("password", password);
+        localStorage.setItem("companyDetails", JSON.stringify(response.data));
 
         window.location.href = '/company';
       } else if (response.status === 404) {

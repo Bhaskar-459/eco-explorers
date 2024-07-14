@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 function SignupCompany() {
+  const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
   const [formData, setFormData] = useState({
     id: '',
     displayName: '',
@@ -22,10 +23,15 @@ function SignupCompany() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/company/post/register', formData);
+      const response = await axios.post(`${base_url}/api/company/post/register`, formData);
       
       // Handle successful registration, e.g., show success message, redirect, etc.
-      console.log('Registration successful', response.data);
+      if(response.status===200){
+      // console.log('Registration successful', response.data);
+      alert("registration successful")
+      window.location.href = "/company";
+      localStorage.setItem("companyDetails",JSON.stringify(response.data))
+      }
       // Example: redirect to a thank you page or login page
     } catch (error) {
       // Handle errors

@@ -9,11 +9,11 @@ function LoginNgo() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/ngo/post/login', {
+      const response = await axios.post(`${base_url}/api/ngo/post/login`, {
         email,
         password,
       });
@@ -21,7 +21,7 @@ function LoginNgo() {
       if (response.status === 200) {
         //Handle successful login, e.g., store user data, redirect, etc.
         alert('Login successful');
-        localStorage.setItem("userDetails", JSON.stringify(response.data));
+        localStorage.setItem("ngoDetails", JSON.stringify(response.data));
 
         window.location.href = '/ngo';
       } else if(response.status === 404){
