@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Transactions = new mongoose.Schema({
+const transactionsSchema = new mongoose.Schema({
     TransactionId: {
         type: String,
         required: true
@@ -38,5 +38,5 @@ const Transactions = new mongoose.Schema({
     },
 });
 
-const TransactionsModel = mongoose.model('Transactions', Transactions);
+const TransactionsModel = mongoose.model('Transactions', transactionsSchema);
 export default TransactionsModel;

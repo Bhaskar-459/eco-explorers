@@ -1,7 +1,7 @@
 const updateTransactionHistoryForPeople = async ({TransactionObj},person,transactionType) => {
     try {
         const { TransactionId, category, PersonName, creditValue, NoOfCredits } = TransactionObj;
-
+       console.log("TransactionObj from updaetet", TransactionObj);
         const transaction = {
             transactionId: TransactionId,
             transactionCreditValue: creditValue,

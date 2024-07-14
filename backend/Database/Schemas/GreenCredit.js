@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const entityType = ('Company', 'User', 'Admin');
+const entityType = ('People', 'Company', 'Ngo');
 
 const List = new mongoose.Schema({
     id : {
@@ -11,6 +11,9 @@ const List = new mongoose.Schema({
         type : String,
     },
     price : {
+        type : Number,
+    },
+    quantity : {
         type : Number,
     }
 });
