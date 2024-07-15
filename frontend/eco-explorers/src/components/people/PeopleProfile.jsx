@@ -1,8 +1,8 @@
 import React, {useState } from 'react'
-const ProfileDetails =(props) =>  {
+const Profile =() =>  {
 
-  let ngoDetails=JSON.parse(localStorage.getItem("ngoDetails"));
-  console.log(ngoDetails);
+  let peopleDetails=JSON.parse(localStorage.getItem("peopleDetails"));
+  console.log(peopleDetails);
   return (
     
     <div className='profileDetailsContainer'>
@@ -12,13 +12,13 @@ const ProfileDetails =(props) =>  {
       <div className='listDetailsContainer'>
         <div className='personalProfileDetails'>
           <p>Name:</p>
-          <p>{ngoDetails.personalInfo.name}</p>
+          <p>{peopleDetails.Name}</p>
           <p>Phone No:</p>
-          <p>{ngoDetails.personalInfo.phone}</p>
+          <p>{peopleDetails.personalInfo.phone}</p>
           <p>Address:</p>
-          <p>{ngoDetails.personalInfo.address}</p>
+          <p>{peopleDetails.personalInfo.address}</p>
           <p>Email:</p>
-          <p>{ngoDetails.email}</p>
+          <p>{peopleDetails.email}</p>
         </div>
         <div className='financialProfileDetails'>
           <div className='noofCredits'></div>
@@ -31,6 +31,6 @@ const ProfileDetails =(props) =>  {
   )
 }
 
-ProfileDetails.propTypes = {}
+// ProfileDetails.propTypes = {}
 
-export default ProfileDetails
+export default Profile;

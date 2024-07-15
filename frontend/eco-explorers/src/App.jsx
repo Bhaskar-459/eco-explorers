@@ -14,6 +14,7 @@ import NgoProfile from './components/Ngo/NgoProfile';
 import CompanyHome from './components/Company/CompanyHome';
 import VerifyNgoCredits from './components/Ngo/NgoVerify';
 import VerifyGCP from './components/Company/VerifyGCP';
+import PeopleHome from './components/people/PeopleHome';
 
 const App = () => {
   return (
@@ -28,7 +29,7 @@ const App = () => {
         <Route path="/registerPeople" element={<SignupPeople />} />
         <Route path="/ngo" element={<NgoHome />} />
         <Route path="/company" element={<CompanyHome />} />
-        {/* <Route path="/ngo" element={<NgoPage />} /> */}
+        <Route path="/people/*" element={<PeopleHome />} />
         <Route path="/my-profile" element={<NgoProfile />} />
         <Route path="/verify-ngo-credits" element={<VerifyNgoCredits />} />
         <Route path='/company-verify-gcp' element={<VerifyGCP />} />
