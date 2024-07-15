@@ -35,11 +35,14 @@ function SignupPeople() {
       }));
     }
   };
-
+  localStorage.setItem("peopleDetails", JSON.stringify(formData));
   const handleSubmit = async (e) => {
+    console.log(formData);
     e.preventDefault();
     try {
+      console.log(formData);
       const response = await axios.post(`${base_url}/api/people/post/register`, formData);
+      console.log(response);
       if (response.status === 200) {
         alert('Registration successful');
         localStorage.setItem("peopleDetails", JSON.stringify(response.data));
