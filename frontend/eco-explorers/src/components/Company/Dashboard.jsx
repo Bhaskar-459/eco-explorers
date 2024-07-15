@@ -6,10 +6,10 @@ const Dashboard = ({ children }) => {
     <div className="dashboard">
       <nav className="sidebar">
         <ul>
-          <li><Link to="/">Home</Link></li>
+          <li><Link to="/company">Home</Link></li>
           <li><Link to="/my-profile">My Profile</Link></li>
-          <li><Link to="/history">History</Link></li>
-          <li><Link to="/projects">Projects</Link></li>
+          <li><Link to="/company-history">History</Link></li>
+          <li><Link to="/company-verify-gcp">Verify Gcp</Link></li>
         </ul>
       </nav>
       <div className="content">

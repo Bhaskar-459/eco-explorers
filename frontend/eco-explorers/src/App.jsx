@@ -13,6 +13,7 @@ import NgoHome from './components/Ngo/NgoHome';
 import NgoProfile from './components/Ngo/NgoProfile';
 import CompanyHome from './components/Company/CompanyHome';
 import VerifyNgoCredits from './components/Ngo/NgoVerify';
+import VerifyGCP from './components/Company/VerifyGCP';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         {/* <Route path="/ngo" element={<NgoPage />} /> */}
         <Route path="/my-profile" element={<NgoProfile />} />
         <Route path="/verify-ngo-credits" element={<VerifyNgoCredits />} />
+        <Route path='/company-verify-gcp' element={<VerifyGCP />} />
 
       </Routes>
     </Router>
