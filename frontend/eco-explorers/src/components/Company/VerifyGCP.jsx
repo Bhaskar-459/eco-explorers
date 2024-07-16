@@ -35,11 +35,7 @@ const VerifyGCP = props => {
         }
     }
     return (
-        <div className="App" >
-            <Nav />
-            <div className="main-content">
-                <Dashboard className="dashboard" />
-                <div className="content">
+        <div className="content">
                     <div className='verifyGcpContent'>
                         {!verifyStatus && (
                         <div className='verifyDetails'>
@@ -71,8 +67,6 @@ const VerifyGCP = props => {
                     </div>
 
                 </div>
-            </div>
-        </div>
     )
 }
 
