@@ -21,7 +21,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/*" element={<HomePage />} />
         <Route path="/loginNgo" element={<LoginNgo />} />
         <Route path="/loginCompany" element={<LoginCompany />} />
         <Route path="/loginPeople" element={<LoginPeople />} />
@@ -31,11 +31,6 @@ const App = () => {
         <Route path="/ngo/*" element={<NgoHome />} />
         <Route path="/company/*" element={<CompanyHome />} />
         <Route path="/people/*" element={<PeopleHome />} />
-        {/* <Route path="/my-profile" element={<NgoProfile />} />
-        <Route path="/verify-ngo-credits" element={<VerifyNgoCredits />} /> */}
-        {/* <Route path="/company-profile" element={<CompanyProfile />} /> */}
-        {/* <Route path='/company-verify-gcp' element={<VerifyGCP />} /> */}
-
       </Routes>
     </Router>
   );

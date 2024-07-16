@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 12vh; /* 10% of viewport height */
+    height: 10vh; /* 10% of viewport height */
     padding: 0 20px; /* Optional padding for spacing */
     background-color: #bdd7db; /* Example background color */
 }
