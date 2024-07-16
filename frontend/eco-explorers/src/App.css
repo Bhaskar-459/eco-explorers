@@ -47,7 +47,7 @@
 .main-content {
   position: relative;
   text-align: center;
-  color: white;
+  color: black;
 }
 
 .background {
@@ -184,6 +184,8 @@ button:hover {
 
 p {
   margin-top: 15px;
+  color:black;
+
 }
 
 p a {

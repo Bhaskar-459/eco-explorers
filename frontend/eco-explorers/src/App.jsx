@@ -15,6 +15,7 @@ import CompanyHome from './components/Company/CompanyHome';
 import VerifyNgoCredits from './components/Ngo/NgoVerify';
 import VerifyGCP from './components/Company/VerifyGCP';
 import PeopleHome from './components/people/PeopleHome';
+import CompanyProfile from './components/Company/CompanyProfile';
 
 const App = () => {
   return (
@@ -28,11 +29,12 @@ const App = () => {
         <Route path="/registerCompany" element={<SignupCompany />} />
         <Route path="/registerPeople" element={<SignupPeople />} />
         <Route path="/ngo/*" element={<NgoHome />} />
-        <Route path="/company" element={<CompanyHome />} />
+        <Route path="/company/*" element={<CompanyHome />} />
         <Route path="/people/*" element={<PeopleHome />} />
         {/* <Route path="/my-profile" element={<NgoProfile />} />
         <Route path="/verify-ngo-credits" element={<VerifyNgoCredits />} /> */}
-        <Route path='/company-verify-gcp' element={<VerifyGCP />} />
+        {/* <Route path="/company-profile" element={<CompanyProfile />} /> */}
+        {/* <Route path='/company-verify-gcp' element={<VerifyGCP />} /> */}
 
       </Routes>
     </Router>
