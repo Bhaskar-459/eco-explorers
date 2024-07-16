@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from '../../Common/Home/header';
-import Dashboard from '../../Common/Home/dashboard';
-import MarketScenario from '../../Common/Home/MarketScenario'; 
+import Dashboard from './dashboard';
+import History from './history';
 import Profile from './PeopleProfile';
+import Home from './home';
 // import { Link } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 const PeopleHome = () => {
@@ -10,19 +11,18 @@ const PeopleHome = () => {
     <div>
       <Header />
       <div className="main-content">
-        <Dashboard/>
+        <Dashboard />
         <div className="content">
-          <MarketScenario />
           <div className="second">
-          <Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="profile" element={<Profile />} />
               <Route path="history" element={<History />} />
-              {/* Add more routes as needed */}
-          </Routes>
+            </Routes>
           </div>
         </div>
       </div>
-      
+
     </div>
   )
 }
