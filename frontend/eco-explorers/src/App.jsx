@@ -27,11 +27,11 @@ const App = () => {
         <Route path="/registerNgo" element={<SignupNgo />} />
         <Route path="/registerCompany" element={<SignupCompany />} />
         <Route path="/registerPeople" element={<SignupPeople />} />
-        <Route path="/ngo" element={<NgoHome />} />
+        <Route path="/ngo/*" element={<NgoHome />} />
         <Route path="/company" element={<CompanyHome />} />
         <Route path="/people/*" element={<PeopleHome />} />
-        <Route path="/my-profile" element={<NgoProfile />} />
-        <Route path="/verify-ngo-credits" element={<VerifyNgoCredits />} />
+        {/* <Route path="/my-profile" element={<NgoProfile />} />
+        <Route path="/verify-ngo-credits" element={<VerifyNgoCredits />} /> */}
         <Route path='/company-verify-gcp' element={<VerifyGCP />} />
 
       </Routes>
