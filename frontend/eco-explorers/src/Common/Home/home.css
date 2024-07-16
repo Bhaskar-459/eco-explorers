@@ -1,0 +1,27 @@
+body{
+    padding-top: 20vh;
+}
+.head{
+    top:0;
+}
+.welcome-content{
+    background-image: url("../../assets/bgm8.jpg");
+    height:80vh;
+}
+.about{
+    display: flex;
+    flex-direction: column;
+    
+}
+.about h2{
+    font-size: '3em';
+    margin-bottom: '20px';
+    color: '#2e7d32';
+  }
+
+.about h2 p{
+    font-size: '1.2em';
+    line-height: '1.6';
+    margin-bottom: '20px';
+    color: '#555',
+}

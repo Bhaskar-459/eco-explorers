@@ -19,10 +19,10 @@ const Nav = () => {
             <nav className="nav">
                 <ul>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="#about">About Us</Link></li>
-                    <li><Link to="#benefits">Benefits</Link></li>
-                    <li><Link to="#contact">Contact Us</Link></li>
-                    <li><Link to="#privacy-policy">Privacy Policy</Link></li>
+                    <li><Link to="about">About Us</Link></li>
+                    <li><Link to="benefits">Benefits</Link></li>
+                    <li><Link to="contact">Contact Us</Link></li>
+                    <li><Link to="privacy-policy">Privacy Policy</Link></li>
                     <li><select name="org" id="org-select" onChange={handleSelectChange}>
                         <option value="select">Select an option</option>
                         <option value="NGO">NGO</option>
