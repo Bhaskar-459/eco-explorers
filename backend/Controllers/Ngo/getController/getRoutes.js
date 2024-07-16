@@ -8,8 +8,8 @@ const router = Router();
 
 
 router.get('/',getFunc);
-router.get('/getTransactionHistory',getTransactionHistoryFunc);
-router.get('/getProfile',getProfileFunc);
+router.get('/getTransactionHistory/:email',getTransactionHistoryFunc);
+router.get('/getProfile/:email',getProfileFunc);
 
 
 

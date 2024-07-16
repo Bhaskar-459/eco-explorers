@@ -6,7 +6,7 @@ const router = Router();
 
 // get all people data
 router.get('/',getFunc);
-router.get('/profile',getProfileFunc);
+router.get('/profile/:email',getProfileFunc);
 
 
 export default router;

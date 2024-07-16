@@ -1,7 +1,7 @@
 import Ngo from '../../../Database/Schemas/Ngo.js';
 const getProfileFunc = async (req, res) => {
     try {
-        const email = req.body.email;
+        const email = req.params.email;
         const ngo = await Ngo.findOne({
             email
         });

@@ -1,7 +1,7 @@
 import People  from "../../../Database/Schemas/People.js";
 const getProfileFunc = async (req, res) => {
     try {
-        const email = req.body.email;
+        const email = req.params.email;
         const people = await People.findOne({
             email
         });
