@@ -6,7 +6,7 @@ const Dashboard = ({ children }) => {
     <div className="dashboard">
       <nav className="sidebar">
         <ul>
-          <li><Link to="/">Home</Link></li>
+          <li><Link to="">Home</Link></li>
           <li><Link to="profile">My Profile</Link></li>
           <li><Link to="history">History</Link></li>
 

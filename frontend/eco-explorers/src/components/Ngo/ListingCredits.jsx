@@ -53,7 +53,7 @@ const ListingCredits = () => {
     <div className="listing-credits">
       <h2>Listing Credits</h2>
       <button onClick={handleSellClick}>Sell</button>
-
+      
       {showPopup && (
         <div className="popup">
           <div className="popup-content">

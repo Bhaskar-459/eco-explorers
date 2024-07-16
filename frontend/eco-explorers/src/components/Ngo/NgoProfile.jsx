@@ -7,7 +7,6 @@ import './NgoProfile.css';
 
 function NgoProfile() {
     return (
-
         <div className="content">
             <ProfileDetails />
             <button className='editButton'>Edit Profile</button>
