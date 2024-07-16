@@ -1,6 +1,6 @@
 import Ngo from "../../../Database/Schemas/Ngo.js";
 const getTransactionHistoryFunc = async (req, res) => {
-    const email = req.body.email;
+    const email = req.params.email;
     const ngo = await Ngo.findOne
     ({
         email : email
