@@ -3,7 +3,7 @@ import Header from '../../Common/Home/header';
 import Dashboard from '../../Common/Home/dashboard';
 import MarketScenario from '../../Common/Home/MarketScenario'; 
 import Profile from './PeopleProfile';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 const PeopleHome = () => {
   return (
@@ -18,7 +18,7 @@ const PeopleHome = () => {
               <Route path="profile" element={<Profile />} />
               <Route path="history" element={<History />} />
               {/* Add more routes as needed */}
-            </Routes>
+          </Routes>
           </div>
         </div>
       </div>
