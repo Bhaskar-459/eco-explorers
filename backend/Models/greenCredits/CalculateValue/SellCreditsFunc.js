@@ -7,7 +7,6 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
     let actPrice = creditPrice;
 
     if (buyList.length === 0) {
-        // No buyers in the market
         sellList.push({
             id: personId,
             name: "Company",
@@ -15,10 +14,10 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
             quantity: noOfCredits
         });
 
-        // Save changes to the database
         await greenCreditDoc.save();
+        return "No buyers available";
     } else {
-        buyList.sort((a, b) => b.price - a.price); // Sort by price descending
+        buyList.sort((a, b) => b.price - a.price);
 
         let totalCreditsAvailable = 0;
         let sufficientPriceAvailable = false;
@@ -45,6 +44,7 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
 
             // Save changes to the database
             await greenCreditDoc.save();
+            return "Not enough buyers at the selling price";
         } else {
             // Execute the sale
             let remainingCreditsToSell = noOfCredits;
@@ -81,7 +81,7 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
             }
 
             // Update the current value
-            const updatedValue = (noOfCredits * actPrice) / noOfCredits;
+            const updatedValue = actPrice;
             greenCreditDoc.currValue = updatedValue;
 
             // Save changes to the database
