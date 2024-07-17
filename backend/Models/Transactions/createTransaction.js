@@ -2,6 +2,7 @@ import TransactionsModel from "../../Database/Schemas/Transactions.js";
 
 const createTransaction = async ({ TransactionObj }) => {
     try {
+        console.log("TransactionObj", TransactionObj);
         const transaction = new TransactionsModel({
             TransactionId: TransactionObj.transactionId,
             category: TransactionObj.transactionCategory,

@@ -5,29 +5,29 @@ import updateGreenCreditValueFunc from "../../greenCredits/CalculateValue/update
 import mongoose from 'mongoose';
 
 const postBuyCreditsFunc = async (req, res) => {
-    const { email, credits } = req.body;
+    const { email, noOfCredits,creditPrice  } = req.body;
     try {
         const person = await People.findOne({ email });
         if (!person) {
             return res.status(404).json({ message: 'Person not found' });
         }
         const personId = person._id;
-        const newCreditValue = await updateGreenCreditValueFunc(personId,credits, 10, "Buy");
-        console.log("newCreditValue", newCreditValue);
+        const newCreditValue = await updateGreenCreditValueFunc(personId,noOfCredits,creditPrice, "Buy");
+        
         
         if (typeof newCreditValue === 'string') {
-            return res.status(400).json({ message: newCreditValue });
+            return res.json({ message: newCreditValue });
         }
         
-        person.portfolio.currentCredits += credits;
+        person.portfolio.currentCredits += noOfCredits;
         await person.save();
 
         const transactionObj = {
             transactionId: new mongoose.Types.ObjectId().toString(),
-            transactionCreditValue: credits * 10,
+            transactionCreditValue: noOfCredits * creditPrice,
             transactionPersonName: person._id,
             transactionCategory: "People",
-            transactionNoOfCredits: credits,
+            transactionNoOfCredits: noOfCredits,
             transactionDate: new Date(),
             transactionType: "Buy",
             transactionStatus: "Executed"
