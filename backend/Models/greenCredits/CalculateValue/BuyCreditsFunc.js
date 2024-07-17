@@ -2,8 +2,8 @@ import greenCredit from "../../../Database/Schemas/GreenCredit.js";
 
 const BuyCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
     const greenCreditDoc = await greenCredit.findOne(); // Assuming a single document for simplicity
-    const sellList = greenCreditDoc.SellList;
-    const buyList = greenCreditDoc.BuyList;
+    const sellList = greenCreditDoc[0].SellList;
+    const buyList = greenCreditDoc[0].BuyList;
     let actPrice = creditPrice;
 
     if (sellList.length === 0) {
@@ -17,6 +17,7 @@ const BuyCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
 
         // Save changes to the database
         await greenCreditDoc.save();
+        return {"message": "No sellers in the market"};
     } else {
         sellList.sort((a, b) => a.price - b.price); // Sort by price ascending
 
@@ -33,6 +34,7 @@ const BuyCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
                 }
             }
         }
+        
 
         if (!sufficientPriceAvailable) {
             // Not enough sellers at the buying price
@@ -45,6 +47,7 @@ const BuyCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
 
             // Save changes to the database
             await greenCreditDoc.save();
+            return {"message": "Not enough sellers at the buying price"};
         } else {
             // Execute the purchase
             let remainingCreditsToBuy = noOfCredits;
