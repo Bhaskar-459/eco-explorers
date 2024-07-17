@@ -4,44 +4,47 @@ import UpdateGreenCreditValueFunc from "../../greenCredits/CalculateValue/Update
 
 const postCompBuyCredits = async (req, res) => {
     try {
-        // console.log("Inside postCompBuyCredits", req.body.emailId, req.body.CreditstoBuy);
-        const { emailId, noOfCredits,creditprice } = req.body;
-        const company = await
-        Company.findOne({companyMail: emailId});
-        if(!company){
-            return res.status(404).json({message: "Company not found"});
+        const { emailId, noOfCredits, creditPrice } = req.body;
+
+        const company = await Company.findOne({ companyMail: emailId });
+        if (!company) {
+            return res.status(404).json({ message: "Company not found" });
         }
-        const id = company._id;
-        const finalValue = await UpdateGreenCreditValueFunc(id,noOfCredits,creditprice,"Buy");
-        // console.log("finalValue", finalValue);
+
+        const finalValue = await UpdateGreenCreditValueFunc(company._id, noOfCredits, creditPrice, "Buy");
         if (typeof finalValue === "string") {
-            return res.json({message: finalValue});
+            return res.status(400).json({ message: finalValue });
         }
+
         company.creditsAvailable += noOfCredits;
         company.transactionHistory.push({
-            id : company._id,
-            date : new Date(),
-            creditprice : finalValue,
-            noOfCredits : noOfCredits,
+            id: company._id,
+            date: new Date(),
+            creditPrice: finalValue,
+            noOfCredits: noOfCredits,
         });
+
         await company.save();
-       const TransactionObj = {
-            TransactionId: 1,
+
+        const TransactionObj = {
+            TransactionId: 1, // Consider a mechanism to generate unique Transaction IDs
             category: "Company",
             PersonName: company._id,
             creditValue: finalValue * noOfCredits,
             NoOfCredits: noOfCredits,
             TransactionDate: new Date(),
             TransactionType: "Buy"
-       }
+        };
 
-        await createTransaction({TransactionObj});
+        await createTransaction({ TransactionObj });
 
-        return res.status(200).json({message: "Credits Bought Successfully"});
+        return res.status(200).json({ message: "Credits Bought Successfully" });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
     }
-    catch (error) {
-        return res.status(500).json({message: error.message});
-    }
-}
+};
 
 export default postCompBuyCredits;
+
+
+

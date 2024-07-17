@@ -5,39 +5,36 @@ import updateGreenCreditValueFunc from "../../greenCredits/CalculateValue/update
 import mongoose from 'mongoose';
 
 const postBuyCreditsFunc = async (req, res) => {
-    const { email, noOfCredits,creditPrice  } = req.body;
+    const { email, noOfCredits, creditPrice } = req.body;
     try {
         const person = await People.findOne({ email });
         if (!person) {
             return res.status(404).json({ message: 'Person not found' });
         }
         const personId = person._id;
-        const newCreditValue = await updateGreenCreditValueFunc(personId,noOfCredits,creditPrice, "Buy");
-        
-        
+        const newCreditValue = await updateGreenCreditValueFunc(personId, noOfCredits, creditPrice, "Buy");
+
         if (typeof newCreditValue === 'string') {
-            return res.json({ message: newCreditValue });
+            return res.status(400).json({ message: newCreditValue });
         }
-        
+
         person.portfolio.currentCredits += noOfCredits;
         await person.save();
 
         const transactionObj = {
-            transactionId: new mongoose.Types.ObjectId().toString(),
-            transactionCreditValue: noOfCredits * creditPrice,
-            transactionPersonName: person._id,
-            transactionCategory: "People",
-            transactionNoOfCredits: noOfCredits,
-            transactionDate: new Date(),
-            transactionType: "Buy",
+            TransactionId: new mongoose.Types.ObjectId().toString(),
+            creditValue: noOfCredits * creditPrice,
+            PersonName: person._id,
+            category: "People",
+            NoOfCredits: noOfCredits,
+            TransactionDate: new Date(),
+            TransactionType: "Buy",
             transactionStatus: "Executed"
         };
 
-        // console.log("transactionObj", transactionObj);
+        const savedTransaction = await createTransaction({ TransactionObj: transactionObj });
+        await updateTransactionHistoryForPeople({ TransactionObj: transactionObj }, person, "Buy");
 
-        await createTransaction({ TransactionObj: transactionObj  });
-        await updateTransactionHistoryForPeople(transactionObj, person, "Buy");
-        console.log("transactionObj came ra");
         res.status(200).json({ message: 'Credits bought successfully' });
     } catch (error) {
         console.error(error);

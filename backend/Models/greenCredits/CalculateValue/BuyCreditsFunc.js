@@ -1,14 +1,12 @@
-import greenCredit from "../../../Database/Schemas/GreenCredit.js";
+import greenCredits from "../../../Database/Schemas/GreenCredit.js";
 
-const BuyCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
-    const greenCreditDoc = await greenCredit.findOne();
-    //  console.log("greenCreditDoc",greenCreditDoc.SellList);
+const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice) => {
+    const greenCreditDoc = await greenCredits.findOne();
     const sellList = greenCreditDoc.SellList;
     const buyList = greenCreditDoc.BuyList;
-    let actPrice = creditPrice;
 
+    console.log("BUy list before", buyList);
     if (sellList.length === 0) {
-        // No sellers in the market
         buyList.push({
             id: personId,
             name: "Company",
@@ -16,84 +14,77 @@ const BuyCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
             quantity: noOfCredits
         });
 
-        // Save changes to the database
         await greenCreditDoc.save();
-        return {"message": "No sellers in the market"};
-    } else {
-        sellList.sort((a, b) => a.price - b.price); // Sort by price ascending
+        return "No sellers in the market";
+    }
 
-        let totalCreditsAvailable = 0;
-        let sufficientPriceAvailable = false;
+    sellList.sort((a, b) => a.price - b.price);
 
-        // Check if there are enough sellers and at a sufficient price
-        for (let i = 0; i < sellList.length; i++) {
-            if (sellList[i].price <= creditPrice) {
-                totalCreditsAvailable += sellList[i].quantity;
-                if (totalCreditsAvailable >= noOfCredits) {
-                    sufficientPriceAvailable = true;
-                    break;
-                }
+    let totalCreditsAvailable = 0;
+    let sufficientPriceAvailable = false;
+
+    for (let i = 0; i < sellList.length; i++) {
+        console.log("Sell list price: ", sellList[i].price);
+        console.log("Credit price: ", creditPrice);
+        if (sellList[i].price <= creditPrice) {
+            totalCreditsAvailable += sellList[i].quantity;
+            console.log("Total credits available: ", totalCreditsAvailable);
+            if (totalCreditsAvailable >= noOfCredits) {
+                sufficientPriceAvailable = true;
+                break;
             }
         }
-        
+    }
+    console.log("Total credits available: ", totalCreditsAvailable);
+    console.log("Sufficient price available: ", sufficientPriceAvailable);
 
-        if (!sufficientPriceAvailable) {
-            // Not enough sellers at the buying price
+
+    if (!sufficientPriceAvailable) {
+        buyList.push({
+            id: personId,
+            name: "Company",
+            price: creditPrice,
+            quantity: noOfCredits
+        });
+        await greenCreditDoc.save();
+        return "Not enough sellers at the buying price";
+    } else {
+        let remainingCreditsToBuy = noOfCredits;
+        let actPrice = creditPrice;
+
+        while (remainingCreditsToBuy > 0 && sellList.length > 0) {
+            const currentSeller = sellList.shift();
+            
+            if (currentSeller.price > creditPrice) {
+                break;
+            }
+
+            if (currentSeller.quantity <= remainingCreditsToBuy) {
+                remainingCreditsToBuy -= currentSeller.quantity;
+                actPrice = currentSeller.price;
+            } else {
+                currentSeller.quantity -= remainingCreditsToBuy;
+                actPrice = currentSeller.price;
+                remainingCreditsToBuy = 0;
+                sellList.unshift(currentSeller);
+            }
+        }
+
+        if (remainingCreditsToBuy > 0) {
             buyList.push({
                 id: personId,
                 name: "Company",
-                price: creditPrice,
-                quantity: noOfCredits
+                price: actPrice,
+                quantity: remainingCreditsToBuy
             });
-
-            // Save changes to the database
-            await greenCreditDoc.save();
-            return {"message": "Not enough sellers at the buying price"};
-        } else {
-            // Execute the purchase
-            let remainingCreditsToBuy = noOfCredits;
-
-            while (remainingCreditsToBuy > 0 && sellList.length > 0) {
-                let currentSeller = sellList[sellList.length - 1];
-
-                if (currentSeller.price > creditPrice) {
-                    // No more sellers at the required price
-                    break;
-                }
-
-                if (currentSeller.quantity <= remainingCreditsToBuy) {
-                    // Buyer can buy all remaining credits
-                    remainingCreditsToBuy -= currentSeller.quantity;
-                    actPrice = currentSeller.price;
-                    sellList.pop(); // Remove the seller from the list
-                } else {
-                    // Buyer can buy only part of the remaining credits
-                    currentSeller.quantity -= remainingCreditsToBuy;
-                    actPrice = currentSeller.price;
-                    remainingCreditsToBuy = 0;
-                }
-            }
-
-            if (remainingCreditsToBuy > 0) {
-                // If we couldn't buy all credits, add to the buy list
-                buyList.push({
-                    id: personId,
-                    name: "Company",
-                    price: actPrice,
-                    quantity: remainingCreditsToBuy
-                });
-            }
-
-            // Update the current value
-            const updatedValue = (noOfCredits * actPrice) / noOfCredits;
-            greenCreditDoc.currValue = updatedValue;
-
-            // Save changes to the database
-            await greenCreditDoc.save();
         }
-    }
 
-    return value;
+        greenCreditDoc.currValue = actPrice;
+        await greenCreditDoc.save();
+
+        return actPrice;
+    }
 };
 
 export default BuyCreditsFunc;
+
