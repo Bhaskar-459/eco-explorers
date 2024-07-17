@@ -1,10 +1,11 @@
 import companyToSell from "../../../Database/Schemas/CompanyToSell.js";
 import createTransaction from "../../Transactions/createTransaction.js";
+import UpdateGreenCreditValueFunc from "../../greenCredits/CalculateValue/UpdateGreenCreditValueFunc.js";
 
 const postCompSellCredits = async (req, res) => {
     try {
-        const { emailId, CreditstoSell } = req.body;
-        // console.log("emailId", emailId, "CreditstoSell", CreditstoSell); 
+        const { emailId, noOfCredits,creditprice } = req.body;
+        // console.log("emailId", emailId, "noOfCredits", noOfCredits); 
         const company = await companyToSell.findOne({email: emailId});
         // console.log("company", company);
         if(!company){
@@ -14,15 +15,21 @@ const postCompSellCredits = async (req, res) => {
             return res.status(400).json({message: "Company not registered on GCP"});
         }
 
-        if(CreditstoSell > company.GeneratedCredits){
+        if(noOfCredits > company.GeneratedCredits){
             return res.status(400).json({message: "Insufficient Credits"});
         }
-        company.GeneratedCredits -= CreditstoSell;
+        const id = company.populate('id')._id;
+        const finalValue = await UpdateGreenCreditValueFunc(id,noOfCredits, creditprice,"Sell")
+        if (typeof finalValue === "string") {
+            return res.json({message: finalValue});
+        }
+
+        company.GeneratedCredits -= noOfCredits;
         company.transactionHistory.push({
             id : company._id,
             date : new Date(),
-            creditprice : company.creditprice,
-            noOfCredits : CreditstoSell,
+            creditprice : finalValue,
+            noOfCredits : noOfCredits,
         });
         await company.save();
         const compId =  (await company.populate('id'))._id;
@@ -31,8 +38,8 @@ const postCompSellCredits = async (req, res) => {
                 TransactionId: 1,
                 category: "Company",
                 PersonName: compId,
-                creditValue: CreditstoSell * 10,
-                NoOfCredits: CreditstoSell,
+                creditValue: noOfCredits * finalValue,
+                NoOfCredits: noOfCredits,
                 TransactionDate: new Date(),
                 TransactionType: "Sell"
             }
