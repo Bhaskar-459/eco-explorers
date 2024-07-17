@@ -10,6 +10,9 @@ const UpdateGreenCreditValueFunc = async (personId,noOfCredits, creditPrice, typ
 
         const value = greenCreditDoc.currValue;
         const finalValue = await CalculateValueFunc(personId,value, noOfCredits, creditPrice, type);
+        if (typeof finalValue === "string") {
+            return finalValue;
+        }
         greenCreditDoc.currValue = finalValue;
 
         await greenCreditDoc.save();
