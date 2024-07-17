@@ -1,75 +1,49 @@
-import React from 'react'
-import { useState } from 'react';
-import Nav from '../../Common/Home/nav';
-import Dashboard from './Dashboard';
+import React, { useState } from 'react';
 import axios from 'axios';
+import './VerifyGCP.css';
 
+const VerifyGCP = () => {
+    const [certificateId, setCertificateId] = useState('');
+    const [message, setMessage] = useState('');
+    const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
 
-
-const VerifyGCP = props => {
-    let [companyDetails, setCompanyDetails] = useState(JSON.parse(localStorage.getItem("companyDetails")));
-    let [verifyStatus, setVerifyStatus] = useState(localStorage.getItem("companyDetails.isRegisteredOnGCP"));
-    let [gcpPlatformId, setGcpPlatformId] = useState(0);
-    let [emailId, setEmailId] = useState('');
-    const handleGcpChange = (e) => {
-        setGcpPlatformId(e.target.value);
-    };
-    const handleEmailChange = (e) => {
-        setEmailId(e.target.value);
-    };
-    const handleVerify = async () => {
-
-        const response = await axios.post('http://localhost:5000/api/company/post/gcpRegister',
-            {
-                emailId,
-                gcpPlatformId
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            let companyDetails = JSON.parse(localStorage.getItem("companyDetails"));
+            const email = companyDetails.emailId;
+            console.log(email);
+            const response = await axios.post(`${base_url}/api/company/post/verify`, { email });
+            if (response.data.GeneratedCredits !== undefined) {
+                console.log(response.data.GeneratedCredits);
+                alert('Credits updated successfully!\n 100 Credits added to your account');
+                window.location.href = '/company';
+            } else {
+                setMessage(response.data.message);
             }
-        )
-        if (response.status === 200) {
-            setVerifyStatus(true);
-            companyDetails.isRegisteredOnGCP = true;
-            localStorage.setItem("companyDetails",JSON.stringify(companyDetails));
+        } catch (error) {
+            setMessage('An error occurred while updating credits.');
         }
-        else{
-            alert('Verification Unsuccessful');
-        }
-    }
+    };
+
     return (
-        <div className="content">
-                    <div className='verifyGcpContent'>
-                        {!verifyStatus && (
-                        <div className='verifyDetails'>
-                            <label >Email:<input type='text' value={emailId}
-                                onChange={handleEmailChange}
-                                required /></label>
-                            <label >Gcp Platform Id:<input type="number"
-                                value={gcpPlatformId}
-                                onChange={handleGcpChange}
-                                required /></label>
-                        </div>)}
-                        { verifyStatus && (
-                            <div className='verifyDetails'>
-                                <label >Email:{emailId}</label>
-                                <label >Gcp Platform Id:{gcpPlatformId}</label>
-                            </div>
-                        )}
-                        <div className='verifyButtons'>
-                            <button>Edit Details</button>
-                            {!verifyStatus && (
-                            <button onClick={handleVerify}>Verify</button>
-                        )} 
-                        </div>
-                        {verifyStatus && (
-                            <div className='verifyStatusDisplay'>
-                                <span>Gcp Platform Id Verified</span>
-                            </div>
-                        )}
-                    </div>
-
+        <div className="verify-company-gcp">
+            <h2 className="verify-title">Verify and Update Company GCP Credits</h2>
+            <form onSubmit={handleSubmit} className="verify-form">
+                <div className="form-group">
+                    <label>Certificate ID:</label>
+                    <input
+                        type="text"
+                        value={certificateId}
+                        onChange={(e) => setCertificateId(e.target.value)}
+                        required
+                        className="input-field"
+                    />
                 </div>
-    )
-}
-
-
-
-export default VerifyGCP
+                <button type="submit" className="submit-button">Verify and Update Credits</button>
+            </form>
+            {message && <p className="message">{message}</p>}
+        </div>
+    );
+};
+export default VerifyGCP;
