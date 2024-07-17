@@ -1,0 +1,9 @@
+.benefit-container{
+    background: linear-gradient(135deg, #FFF9C2, #99EE99);
+
+    padding: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5%;
+}

@@ -1,4 +1,4 @@
-body{
+.home-page{
     padding-top: 20vh;
 }
 .head{
@@ -6,9 +6,15 @@ body{
 }
 .welcome-content{
     background-image: url("../../assets/bgm8.jpg");
+    background-size: cover;
     height:80vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .about{
+    padding: 5%;
     display: flex;
     flex-direction: column;
     
@@ -24,4 +30,17 @@ body{
     line-height: '1.6';
     margin-bottom: '20px';
     color: '#555',
+}
+.middiv{
+    height: fit-content;
+    /* background-color: rgb(180, 228, 84);*/
+    background-color: rgb(122, 255, 182);
+}
+.middiv p{
+    font-size: large;
+    color: #333333;
+}
+.navHead{
+    background: linear-gradient(135deg, #dce35b, #45b649);
+
 }
