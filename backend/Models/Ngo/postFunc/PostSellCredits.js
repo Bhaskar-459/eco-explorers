@@ -4,7 +4,7 @@ import UpdateGreenCreditValueFunc from '../../greenCredits/CalculateValue/update
 // import updateValueFunc from '../../greenCredits/CalculateValue/UpdateValueFunc.js';
 const PostsellCreditsFunc = async (req, res) => {
     const email = req.body.email;
-    const creditprice = req.body.creditprice;
+    const creditprice = req.body.creditPrice;
     const noOfCredits = req.body.noOfCredits;
     const date = new Date();
     const ngo = await Ngo.findOne

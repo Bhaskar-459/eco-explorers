@@ -4,17 +4,18 @@ const createTransaction = async ({ TransactionObj }) => {
     try {
         console.log("TransactionObj", TransactionObj);
         const transaction = new TransactionsModel({
-            TransactionId: TransactionObj.transactionId,
-            category: TransactionObj.transactionCategory,
-            PersonName: TransactionObj.transactionPersonName,
-            entityType: TransactionObj.transactionCategory,
-            creditValue: TransactionObj.transactionCreditValue,
-            NoOfCredits: TransactionObj.transactionNoOfCredits,
-            TransactionDate: TransactionObj.transactionDate,
-            TransactionType: TransactionObj.transactionType
+            TransactionId: TransactionObj.TransactionId,
+            category: TransactionObj.category,
+            PersonName: TransactionObj.PersonName,
+            entityType: TransactionObj.category,
+            creditValue: TransactionObj.creditValue,
+            NoOfCredits: TransactionObj.NoOfCredits,
+            TransactionDate: TransactionObj.TransactionDate,
+            TransactionType: TransactionObj.TransactionType
         });
 
         const savedTransaction = await transaction.save();
+        return savedTransaction; // Return saved transaction for confirmation
     } catch (error) {
         console.error(error);
         throw new Error('Transaction creation failed');
@@ -22,5 +23,6 @@ const createTransaction = async ({ TransactionObj }) => {
 };
 
 export default createTransaction;
+
 
 

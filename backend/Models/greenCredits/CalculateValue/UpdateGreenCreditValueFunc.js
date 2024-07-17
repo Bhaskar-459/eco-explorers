@@ -1,7 +1,7 @@
 import greenCredits from '../../../Database/Schemas/GreenCredit.js';
 import CalculateValueFunc from './CalculateFunc.js';
 
-const UpdateGreenCreditValueFunc = async (personId,noOfCredits, creditPrice, type) => {
+const UpdateGreenCreditValueFunc = async (personId, noOfCredits, creditPrice, type) => {
     try {
         const greenCreditDoc = await greenCredits.findOne();
         if (!greenCreditDoc) {
@@ -9,13 +9,13 @@ const UpdateGreenCreditValueFunc = async (personId,noOfCredits, creditPrice, typ
         }
 
         const value = greenCreditDoc.currValue;
-        const finalValue = await CalculateValueFunc(personId,value, noOfCredits, creditPrice, type);
-        // console.log("finalValue", finalValue);
-        if (typeof finalValue.message === "string") {
-            return finalValue.message;
+        const finalValue = await CalculateValueFunc(personId, value, noOfCredits, creditPrice, type);
+        
+        if (typeof finalValue === "string") {
+            return finalValue;
         }
+        
         greenCreditDoc.currValue = finalValue;
-
         await greenCreditDoc.save();
 
         return finalValue;
@@ -26,4 +26,6 @@ const UpdateGreenCreditValueFunc = async (personId,noOfCredits, creditPrice, typ
 };
 
 export default UpdateGreenCreditValueFunc;
+
+
 

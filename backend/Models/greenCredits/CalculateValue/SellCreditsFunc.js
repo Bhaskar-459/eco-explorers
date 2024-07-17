@@ -2,6 +2,7 @@ import greenCredit from "../../../Database/Schemas/GreenCredit.js";
 
 const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
     const greenCreditDoc = await greenCredit.findOne();
+    console.log(greenCreditDoc,creditPrice);
     const sellList = greenCreditDoc.SellList;
     const buyList = greenCreditDoc.BuyList;
     let actPrice = creditPrice;

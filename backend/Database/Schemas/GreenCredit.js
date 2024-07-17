@@ -21,12 +21,15 @@ const List = new mongoose.Schema({
 const greenCreditSchema = new mongoose.Schema({
     currValue : {
        type : Number, 
+       default : 0
     },
     BuyList :{
         type : [List],
+        default : []
     },
     SellList :{
         type : [List],
+        default : []
     }
 });
 
