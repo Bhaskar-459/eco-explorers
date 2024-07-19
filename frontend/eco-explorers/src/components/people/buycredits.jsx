@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import MarketScenario from '../../Common/Home/MarketScenario';
 
 const BuyCredits = () => {
     let [peopleDetails,setpeopleDetails]=useState(JSON.parse(localStorage.getItem("peopleDetails")));
@@ -21,6 +22,8 @@ const BuyCredits = () => {
       setExpectedPrice('');
     };
   return (
+    <div>
+    <MarketScenario/>
     <div className='buy-credits'>
     <h3>Buy Credits</h3>
         <form onSubmit={handleFormSubmit} className="buy-form">
@@ -39,6 +42,7 @@ const BuyCredits = () => {
           <p>Excpected Price: {creditsToBuy * expectedPrice}</p>
           <button type="submit">Confirm</button>
         </form>
+    </div>
     </div>
 
   )

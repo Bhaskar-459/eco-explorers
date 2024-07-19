@@ -6,6 +6,7 @@ import Profile from './PeopleProfile';
 import Home from './home';
 // import { Link } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
+import BuyCredits from './buycredits';
 const PeopleHome = () => {
   return (
     <div>
@@ -18,6 +19,7 @@ const PeopleHome = () => {
               <Route path="/" element={<Home />} />
               <Route path="profile" element={<Profile />} />
               <Route path="history" element={<History />} />
+              <Route path="buy" element={<BuyCredits />} />
             </Routes>
           </div>
         </div>
