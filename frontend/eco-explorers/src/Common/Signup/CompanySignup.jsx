@@ -10,7 +10,6 @@ function SignupCompany() {
     id: '',
     displayName: '',
     companyPan: '',
-    creditsAvailable: 0,
     companyMail: '',
     password: '',
   });
@@ -84,18 +83,7 @@ function SignupCompany() {
               placeholder="Enter company PAN"
             />
           </div>
-          <div>
-            <label>Credits Available</label>
-            <input
-              type="number"
-              name="creditsAvailable"
-              className="input-field"
-              value={formData.creditsAvailable}
-              onChange={handleChange}
-              required
-              placeholder="Enter credits available"
-            />
-          </div>
+          
           <div>
             <label>Company Email</label>
             <input
