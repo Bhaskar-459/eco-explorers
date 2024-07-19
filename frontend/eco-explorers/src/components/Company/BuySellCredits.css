@@ -1,0 +1,46 @@
+ .buy-credits, .sell-credits {
+    background-color: rgb(196, 230, 241);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    padding-right : 100px;
+    padding-left: 100px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  
+  .buy-credits-title, .sell-credits-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 30px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-button, .verify-button {
+    background-color: #63e1c4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover, .verify-button:hover {
+    background-color: #218838;
+  }
+  

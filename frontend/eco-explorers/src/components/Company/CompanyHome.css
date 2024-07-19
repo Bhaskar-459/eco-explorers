@@ -1,109 +1,82 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
-.company-credits
-{
-    border: 10px solid #4CAF50;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
-    height: fit-content;
-    color: black;
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    width:100%;
-    justify-content: space-evenly;
- }
-.buy-credits
-{
-    justify-content: center;
-    align-items: center;
-    width:max-content;
-    color: black;
-
-}
-.buy-credits .buy-form
-{
-    width:inherit;
-    height: inherit;
+/* CompanyHome.css */
+.app1 {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    align-items:start;
-}
-.sell-credits
-{   
-    justify-content: center;
-    align-items: center;
-    width:max-content;
-    color: black;
-
-
-}
-.sell-credits .sell-form
-{
-    width:inherit;
-    height: inherit;
+    height: 100vh;
+  }
+  
+  .header {
+    flex: 0 1 auto;
+  }
+  
+  .main-content {
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    align-items:start;
-}
+    flex: 1 1 auto;
+    background-color: #f0f2f5;
+  }
+  
+  .dashboard {
+    flex: 0 0 250px;
+    background-color: #64e8ac;
+    color: white;
+  }
+  
+  .sidebar {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #64e8ac;
 
-.verifyGcpContent
-{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: fit-content;
-    margin: 10px;
+  }
+  
+  .sidebar ul {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px 20px;
+  }
+  
+  .sidebar li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .sidebar li a:hover {
+    text-decoration: underline;
+  }
+  
+  .content {
+    flex: 1;
     padding: 20px;
-    border: 10px solid #4CAF50;
+  }
+  
+  .second-content {
+    padding: 20px;
+    background-color: white;
     border-radius: 10px;
-    color: black;
-}
-.verifyGcpContent .verifyDetails
-{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Home.css */
+  .home {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    width: 100%;
-    height: fit-content;
-    margin: 10px;
-    color: black;
-}
-.verifyGcpContent .verifyDetails label
-{
-    margin: 5px;
-}
-.verifyGcpContent .verifyButtons
-{
+    gap: 20px;
+  }
+  
+  .market-scenario {
     display: flex;
-    flex-direction: row;
+    flex: 1;
+    padding: 150px;
+  }
+  
+  .company-credits {
+    display: flex;
     justify-content: space-between;
-    width: 100%;
-    height: fit-content;
-    margin: 10px;
-    padding: 10px;
-    color: black;
-}
-.verifyGcpContent .verifyButtons Button
-{
-    width:fit-content;
-}
-.verifyGcpContent .verifyStatusDisplay
-{
-    display: flex;
-    justify-content: center;
-    width:100%;
-    height: fit-content;
-}
-.verifyGcpContent .verifyStatusDisplay span
-{
-    font-size: medium;
-    font-weight: bolder;
-    color: black;
-}
+    gap: 20px;
+  }
+
+ 
+  
