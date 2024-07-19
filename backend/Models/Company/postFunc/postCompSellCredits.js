@@ -19,7 +19,7 @@ const postCompSellCredits = async (req, res) => {
             return res.status(400).json({message: "Insufficient Credits"});
         }
         const id = company.populate('id')._id;
-        const finalValue = await UpdateGreenCreditValueFunc(id,noOfCredits, creditprice,"Sell")
+        const finalValue = await UpdateGreenCreditValueFunc(id,noOfCredits, creditprice,"Sell","Company");
         if (typeof finalValue === "string") {
             return res.json({message: finalValue});
         }

@@ -66,14 +66,14 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice,entity) 
                     remainingCreditsToSell -= currentBuyer.quantity;
                     actPrice = currentBuyer.price;
                     let top  = buyList.top();
-                    if(entity === "ngo"){
-                        NgoSell(top.id,actPrice, currentBuyer.quantity);
+                    if(entity === "Ngo"){
+                        await NgoSell(top.id,actPrice, currentBuyer.quantity);
                     }
-                    if(entity === "company"){
-                        CompanySell(top.id,actPrice, currentBuyer.quantity);
+                    if(entity === "Company"){
+                        await CompanySell(top.id,actPrice, currentBuyer.quantity);
                     }
-                    if(entity === "individual"){
-                        IndividualSell(top.id,actPrice, currentBuyer.quantity);
+                    if(entity === "People"){
+                        await IndividualSell(top.id,actPrice, currentBuyer.quantity);
                     }
                     buyList.pop(); // Remove the buyer from the list
                 } else {
