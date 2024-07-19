@@ -1,6 +1,6 @@
 import Ngo from "../../../Database/Schemas/Ngo.js";
 import createTransaction from "../../Transactions/createTransaction.js";
-import uuid from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 const NgoSell = async (ngoId, value,noOfCredits) => {
     let ngo = await Ngo.findOne({ NgoId: ngoId });
     if (!ngo) {
@@ -21,7 +21,7 @@ const NgoSell = async (ngoId, value,noOfCredits) => {
 
     // creating a transaction for the Ngo in the transaction collection
     const TransactionObj = {
-        TransactionId: uuid.v4(),
+        TransactionId: uuidv4(),
         category: "Ngo",
         PersonName: ngo.personalInfo._id,
         creditValue: value,

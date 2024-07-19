@@ -1,5 +1,7 @@
 import greenCredit from "../../../Database/Schemas/GreenCredit.js";
 import NgoSell from "./NgoSell.js";
+import CompanySell from "./CompanySell.js";
+import IndividualSell from "./IndividualSell.js";
 
 const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice,entity) => {
     const greenCreditDoc = await greenCredit.findOne();
@@ -68,10 +70,10 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice,entity) 
                         NgoSell(top.id,actPrice, currentBuyer.quantity);
                     }
                     if(entity === "company"){
-                        // CompanySell(top.id,actPrice, currentBuyer.quantity);
+                        CompanySell(top.id,actPrice, currentBuyer.quantity);
                     }
                     if(entity === "individual"){
-                        // IndividualSell(top.id,actPrice, currentBuyer.quantity);
+                        IndividualSell(top.id,actPrice, currentBuyer.quantity);
                     }
                     buyList.pop(); // Remove the buyer from the list
                 } else {
