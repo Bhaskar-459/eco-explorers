@@ -16,7 +16,7 @@ import VerifyNgoCredits from './components/Ngo/NgoVerify';
 import VerifyGCP from './components/Company/VerifyGCP';
 import PeopleHome from './components/people/PeopleHome';
 import CompanyProfile from './components/Company/CompanyProfile';
-import Frontend from './Common/WebSocket/frontend';
+import Frontend from './Common/WebSocket/DividedComponent';
 
 const App = () => {
   return (
