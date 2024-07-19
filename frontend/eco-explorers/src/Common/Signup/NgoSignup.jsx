@@ -108,6 +108,17 @@ function SignupNgo() {
             />
           </div>
           <div>
+            <label>GCP ID</label>
+            <input
+              type="text"
+              name="gcpPlatformId"
+              placeholder="Enter your GCP PLATFORM ID number"
+              value={formData.personalInfo.gcpPlatformId}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
             <label>Name</label>
             <input
               type="text"
