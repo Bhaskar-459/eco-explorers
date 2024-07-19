@@ -1,6 +1,8 @@
 import greenCredits from "../../../Database/Schemas/GreenCredit.js";
+import IndividualBuy from "./IndividualBuy.js";
+import CompanyBuy from "./CompanyBuy.js";
 
-const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice) => {
+const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice,entity) => {
     const greenCreditDoc = await greenCredits.findOne();
     const sellList = greenCreditDoc.SellList;
     const buyList = greenCreditDoc.BuyList;
@@ -24,19 +26,19 @@ const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice) => {
     let sufficientPriceAvailable = false;
 
     for (let i = 0; i < sellList.length; i++) {
-        console.log("Sell list price: ", sellList[i].price);
-        console.log("Credit price: ", creditPrice);
+        // console.log("Sell list price: ", sellList[i].price);
+        // console.log("Credit price: ", creditPrice);
         if (sellList[i].price <= creditPrice) {
             totalCreditsAvailable += sellList[i].quantity;
-            console.log("Total credits available: ", totalCreditsAvailable);
+            // console.log("Total credits available: ", totalCreditsAvailable);
             if (totalCreditsAvailable >= noOfCredits) {
                 sufficientPriceAvailable = true;
                 break;
             }
         }
     }
-    console.log("Total credits available: ", totalCreditsAvailable);
-    console.log("Sufficient price available: ", sufficientPriceAvailable);
+    // console.log("Total credits available: ", totalCreditsAvailable);
+    // console.log("Sufficient price available: ", sufficientPriceAvailable);
 
 
     if (!sufficientPriceAvailable) {
@@ -66,7 +68,14 @@ const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice) => {
                 currentSeller.quantity -= remainingCreditsToBuy;
                 actPrice = currentSeller.price;
                 remainingCreditsToBuy = 0;
+                let first = sellList[0];
+                if(entity ==="People"){
+                    await IndividualBuy(first.id,first.price,remainingCreditsToBuy);
+                }
+                if(entity ==="Company"){
+                    await CompanyBuy(first.id,first.price,remainingCreditsToBuy);
                 sellList.unshift(currentSeller);
+                }
             }
         }
 

@@ -18,7 +18,7 @@ const PostsellCreditsFunc = async (req, res) => {
               return;
         }
 
-        let value = await UpdateGreenCreditValueFunc(id,noOfCredits,creditprice,"Sell","ngo");
+        let value = await UpdateGreenCreditValueFunc(id,noOfCredits,creditprice,"Sell","Ngo");
         if (typeof value === "string") {
             res.json({ message: value });
             return;

@@ -16,7 +16,7 @@ const postSellCreditsFunc = async (req, res) => {
             return res.status(400).json({ message: "Insufficient Credits" });
         }
         const personId = person._id;
-        const newCreditValue = await updateGreenCreditValueFunc(personId,noOfCredits, creditPrice, "Sell");
+        const newCreditValue = await updateGreenCreditValueFunc(personId,noOfCredits, creditPrice, "Sell","People");
 
         if (typeof newCreditValue === 'string') {
             return res.status(400).json({ message: newCreditValue });

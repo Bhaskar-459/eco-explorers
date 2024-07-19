@@ -12,14 +12,13 @@ const postBuyCreditsFunc = async (req, res) => {
             return res.status(404).json({ message: 'Person not found' });
         }
         const personId = person._id;
-        const newCreditValue = await updateGreenCreditValueFunc(personId, noOfCredits, creditPrice, "Buy");
+        const newCreditValue = await updateGreenCreditValueFunc(personId, noOfCredits, creditPrice, "Buy", "People");
 
         if (typeof newCreditValue === 'string') {
             return res.status(400).json({ message: newCreditValue });
         }
 
-        person.portfolio.currentCredits += noOfCredits;
-        await person.save();
+        res.json(newCreditValue);
 
         const transactionObj = {
             TransactionId: new mongoose.Types.ObjectId().toString(),
