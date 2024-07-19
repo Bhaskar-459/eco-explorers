@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect,useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './Common/Home/home';
 import LoginNgo from './Common/Login/NgoLogin';
@@ -16,12 +17,32 @@ import VerifyNgoCredits from './components/Ngo/NgoVerify';
 import VerifyGCP from './components/Company/VerifyGCP';
 import PeopleHome from './components/people/PeopleHome';
 import CompanyProfile from './components/Company/CompanyProfile';
-import Frontend from './Common/WebSocket/DividedComponent';
-
+// import Frontend from './Common/WebSocket/DividedComponent';
+import { SocketContext, socket } from './Socket';
+import { ValueContext} from './Value';
 const App = () => {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    socket.connect();
+    socket.on('connect', () => {
+      console.log('connected ', socket.id)
+    });
+    socket.on('creditValueChange', (val) => {
+      setValue(val).then(console.log('creditvaluechanged ', value));
+    });
+    return () => {
+      socket.disconnect();
+    }
+  }, []);
+  
+
+
   return (
+    <SocketContext.Provider value={socket}>
+      <ValueContext.Provider value={value}>
     <Router>
       <Routes>
+      
         <Route path="/*" element={<HomePage />} />
         <Route path="/loginNgo" element={<LoginNgo />} />
         <Route path="/loginCompany" element={<LoginCompany />} />
@@ -32,9 +53,12 @@ const App = () => {
         <Route path="/ngo/*" element={<NgoHome />} />
         <Route path="/company/*" element={<CompanyHome />} />
         <Route path="/people/*" element={<PeopleHome />} />
-        <Route path="/websocket" element={<Frontend />} />
+        {/* <Route path="/websocket" element={<Frontend />} /> */}
+        
       </Routes>
     </Router>
+    </ValueContext.Provider>
+    </SocketContext.Provider>
   );
 };
 
