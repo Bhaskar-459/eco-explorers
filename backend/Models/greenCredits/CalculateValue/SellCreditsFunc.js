@@ -1,6 +1,7 @@
 import greenCredit from "../../../Database/Schemas/GreenCredit.js";
+import NgoSell from "./NgoSell.js";
 
-const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
+const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice,entity) => {
     const greenCreditDoc = await greenCredit.findOne();
     console.log(greenCreditDoc,creditPrice);
     const sellList = greenCreditDoc.SellList;
@@ -10,7 +11,7 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
     if (buyList.length === 0) {
         sellList.push({
             id: personId,
-            name: "Company",
+            name: entity,
             price: creditPrice,
             quantity: noOfCredits
         });
@@ -38,7 +39,7 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
             // Not enough buyers at the selling price
             sellList.push({
                 id: personId,
-                name: "Company",
+                name: entity,
                 price: creditPrice,
                 quantity: noOfCredits
             });
@@ -62,6 +63,16 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice) => {
                     // Buyer can buy all remaining credits
                     remainingCreditsToSell -= currentBuyer.quantity;
                     actPrice = currentBuyer.price;
+                    let top  = buyList.top();
+                    if(entity === "ngo"){
+                        NgoSell(top.id,actPrice, currentBuyer.quantity);
+                    }
+                    if(entity === "company"){
+                        // CompanySell(top.id,actPrice, currentBuyer.quantity);
+                    }
+                    if(entity === "individual"){
+                        // IndividualSell(top.id,actPrice, currentBuyer.quantity);
+                    }
                     buyList.pop(); // Remove the buyer from the list
                 } else {
                     // Buyer can buy only part of the remaining credits
