@@ -16,6 +16,7 @@ import VerifyNgoCredits from './components/Ngo/NgoVerify';
 import VerifyGCP from './components/Company/VerifyGCP';
 import PeopleHome from './components/people/PeopleHome';
 import CompanyProfile from './components/Company/CompanyProfile';
+import Frontend from './Common/WebSocket/frontend';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/ngo/*" element={<NgoHome />} />
         <Route path="/company/*" element={<CompanyHome />} />
         <Route path="/people/*" element={<PeopleHome />} />
+        <Route path="/websocket" element={<Frontend />} />
       </Routes>
     </Router>
   );
