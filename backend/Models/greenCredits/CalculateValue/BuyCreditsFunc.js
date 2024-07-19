@@ -74,6 +74,7 @@ const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice,entity) 
                 }
                 if(entity ==="Company"){
                     await CompanyBuy(first.id,first.price,remainingCreditsToBuy);
+                }
                 sellList.unshift(currentSeller);
                 }
             }
@@ -92,8 +93,7 @@ const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice,entity) 
         await greenCreditDoc.save();
 
         return actPrice;
-    }
-};
+    };
 
 export default BuyCreditsFunc;
 

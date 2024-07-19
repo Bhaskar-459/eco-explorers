@@ -19,22 +19,6 @@ const postBuyCreditsFunc = async (req, res) => {
         }
 
         res.json(newCreditValue);
-
-        const transactionObj = {
-            TransactionId: new mongoose.Types.ObjectId().toString(),
-            creditValue: noOfCredits * creditPrice,
-            PersonName: person._id,
-            category: "People",
-            NoOfCredits: noOfCredits,
-            TransactionDate: new Date(),
-            TransactionType: "Buy",
-            transactionStatus: "Executed"
-        };
-
-        const savedTransaction = await createTransaction({ TransactionObj: transactionObj });
-        await updateTransactionHistoryForPeople({ TransactionObj: transactionObj }, person, "Buy");
-
-        res.status(200).json({ message: 'Credits bought successfully' });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: error.message });
