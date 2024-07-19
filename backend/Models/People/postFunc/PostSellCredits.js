@@ -22,22 +22,24 @@ const postSellCreditsFunc = async (req, res) => {
             return res.status(400).json({ message: newCreditValue });
         }
 
-        person.portfolio.currentCredits -= noOfCredits;
-        await person.save();
+        res.json(newCreditValue);
 
-        const transactionObj = {
-            transactionId: new mongoose.Types.ObjectId().toString(),
-            transactionCreditValue:noOfCredits * creditPrice,
-            transactionNoOfCredits: noOfCredits,
-            transactionDate: new Date(),
-            transactionType: "Sell",
-            transactionStatus: "Executed"
-        };
+        // person.portfolio.currentCredits -= noOfCredits;
+        // await person.save();
 
-        await createTransaction({TransactionObj:transactionObj});
-        await updateTransactionHistoryForPeople(transactionObj, person, "Sell");
+        // const transactionObj = {
+        //     transactionId: new mongoose.Types.ObjectId().toString(),
+        //     transactionCreditValue:noOfCredits * creditPrice,
+        //     transactionNoOfCredits: noOfCredits,
+        //     transactionDate: new Date(),
+        //     transactionType: "Sell",
+        //     transactionStatus: "Executed"
+        // };
 
-        res.json(person);
+        // await createTransaction({TransactionObj:transactionObj});
+        // await updateTransactionHistoryForPeople(transactionObj, person, "Sell");
+
+        // res.json(person);
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: error.message });
