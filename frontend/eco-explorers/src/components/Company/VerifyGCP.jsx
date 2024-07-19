@@ -11,15 +11,15 @@ const VerifyGCP = () => {
         e.preventDefault();
         try {
             let companyDetails = JSON.parse(localStorage.getItem("companyDetails"));
-            const email = companyDetails.emailId;
-            console.log(email);
-            const response = await axios.post(`${base_url}/api/company/post/verify`, { email });
-            if (response.data.GeneratedCredits !== undefined) {
-                console.log(response.data.GeneratedCredits);
+            const emailId = companyDetails.companyMail;
+            console.log(emailId);
+            const response = await axios.post(`${base_url}/api/company/post/verifyCredits`, { emailId });
+            if (response.data !== undefined) {
+                console.log(response.data);
                 alert('Credits updated successfully!\n 100 Credits added to your account');
                 window.location.href = '/company';
             } else {
-                setMessage(response.data.message);
+                setMessage(response.data);
             }
         } catch (error) {
             setMessage('An error occurred while updating credits.');

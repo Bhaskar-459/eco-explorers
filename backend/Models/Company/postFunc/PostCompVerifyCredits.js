@@ -6,6 +6,7 @@ const postCompSellCredits = async (req, res) => {
         console.log(emailId);
         const company = await companyToSell
             .findOne({ email: emailId });
+            console.log(company);
         if (!company) {
             return res.status(404)
                 .json({ message: "Company not found" });
