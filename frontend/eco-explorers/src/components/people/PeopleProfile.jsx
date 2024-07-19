@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React  from 'react'
 const Profile =() =>  {
 
   let peopleDetails=JSON.parse(localStorage.getItem("peopleDetails"));

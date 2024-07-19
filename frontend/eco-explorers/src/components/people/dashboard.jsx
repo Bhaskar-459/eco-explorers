@@ -9,7 +9,7 @@ const Dashboard = ({ children }) => {
           <li><Link to="">Home</Link></li>
           <li><Link to="profile">My Profile</Link></li>
           <li><Link to="history">History</Link></li>
-
+          <li><Link to="buy">Buy</Link></li>
         </ul>
       </nav>
     </div>
