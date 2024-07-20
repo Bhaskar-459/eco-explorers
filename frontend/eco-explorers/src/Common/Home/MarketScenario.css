@@ -1,7 +1,8 @@
 .market-scenario {
   text-align: center;
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: rgb(200, 230, 241);
+  border-radius: 10px;
 }
 
 .market-scenario h2 {
@@ -11,13 +12,15 @@
 }
 
 .chart-scroll-container {
-  overflow-x: auto;
+  overflow-x: hidden;
   white-space: nowrap;
+  overflow-y: hidden;
 }
 
 .chart-container {
-  width: 200%;
-  height: 500px;
+  width: 100%;
+  height: 60vh;
   display: inline-block;
   vertical-align: top;
+
 }

@@ -11,6 +11,7 @@ import {
     Tooltip,
     Legend,
     LineElement,
+    Colors,
 } from 'chart.js';
 
 ChartJS.register(
@@ -24,7 +25,7 @@ ChartJS.register(
     LineElement
 );
 
-const MAX_DATA_POINTS = 100;
+const MAX_DATA_POINTS = 30;
 
 const PriceChart = () => {
     const [datas, setDatas] = useState([]);
@@ -32,20 +33,26 @@ const PriceChart = () => {
     const value = useContext(ValueContext);
 
     useEffect(() => {
-        const interval = setInterval(() => {
+  
             setDatas((prevDatas) => {
-                const newDatas = [...prevDatas, Math.floor(Math.random() * 100)];
+                if (prevDatas.length >= MAX_DATA_POINTS) {
+                    prevDatas.shift();
+                }
+                const newDatas = [...prevDatas, value];
                 // localStorage.setItem('datas', JSON.stringify(newDatas));
                 return newDatas;
             });
             setTimes((prevTimes) => {
+                if (prevTimes.length >= MAX_DATA_POINTS) {
+                    prevTimes.shift();
+                }
                 const newTimes = [...prevTimes, new Date().toLocaleTimeString()];
                 // localStorage.setItem('times', JSON.stringify(newTimes));
                 return newTimes;
             });
-        }, 500);
+   
 
-        return () => clearInterval(interval);
+        return ;
     }, [value]);
 
     const data = {
@@ -55,14 +62,15 @@ const PriceChart = () => {
                 label: 'GreenCredit-price',
                 data: datas,
                 fill: false,
-                backgroundColor: 'rgb(75, 192, 192)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: '#f8f9fa',
+                borderColor: '#f8f9fa',
             },
         ],
     };
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'top',
@@ -77,6 +85,7 @@ const PriceChart = () => {
                 beginAtZero: true,
             },
         },
+        
     };
 
     return (
