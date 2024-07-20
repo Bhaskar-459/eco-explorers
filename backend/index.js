@@ -7,9 +7,10 @@ import { Server } from 'socket.io';
 import path from 'path';
 
 import apiRoutes from './Routes/routes.js';
+import greenCreditHistory from '../backend/Database/Schemas/GreenCreditHistory.js';
+import greenCredit from '../backend/Database/Schemas/GreenCredit.js';
 
 const app = express();
-
 
 dotenv.config();
 
@@ -18,41 +19,79 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.send("WELCOME TO COAIMBATORE");
-    }
-);
-
-app.use('/api',apiRoutes);
-
-mongoose.connect(process.env.MONGODB_URI)
-.then(() => {
-    console.log('Connected to MongoDB');
-})
-.catch((error) => {
-    console.log("connection error", error.message);
 });
 
+app.use('/api', apiRoutes);
+
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((error) => {
+        console.log("connection error", error.message);
+    });
 
 const server = app.listen(process.env.PORT || 5000, () => {
     console.log('Server started at http://localhost:5000');
 });
 
 const io = new Server(server, {
-    cors:{
+    cors: {
         origin: '*',
         methods: ['GET', 'PUT', 'POST', 'DELETE'],
         credentials: true
     }
 });
+
 io.on('connection', (socket) => {
     console.log(`user connected at ${socket.id}`);
+
     socket.on('message', (msg) => {
         console.log(msg);
         socket.broadcast.emit('received_msg', msg);
     });
-    socket.emit('creditValueChange', 10400);
+
     socket.on('disconnect', () => {
         console.log(`user disconnected at ${socket.id}`);
     });
 });
+
+const MAX_DATA_POINTS = 30;
+let datas = [];
+let times = [];
+
+setInterval(async () => {
+    try {
+        const greenCreditDoc = await greenCredit.findOne();
+        if (greenCreditDoc) {
+            let newvalue = greenCreditDoc.currValue;
+            if (datas.length >= MAX_DATA_POINTS) {
+                datas.shift(datas.length - MAX_DATA_POINTS);
+            }
+            datas = [...datas, newvalue];
+
+            if (times.length >= MAX_DATA_POINTS) {
+                times.shift(times.length - MAX_DATA_POINTS);
+            }
+            times = [...times, new Date().toLocaleTimeString()];
+
+            await greenCreditHistory.updateOne(
+                {},
+                {
+                    $set: {
+                        data: datas,
+                        time: times
+                    }
+                },
+                { upsert: true }
+            );
+
+            io.emit('creditHistoryChange', { datas, times });
+        }
+    } catch (error) {
+        console.log("Error updating GreenCreditHistory: ", error.message);
+    }
+}, 5000);
+
 
 

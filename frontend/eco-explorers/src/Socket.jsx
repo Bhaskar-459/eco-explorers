@@ -1,6 +1,7 @@
 import { io } from 'socket.io-client'
 import {createContext} from 'react'
-export const socket = io('http://localhost:5000',{
+const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
+export const socket = io(base_url,{
     autoConnect: false
 })
 

@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Line } from 'react-chartjs-2';
 import { ValueContext } from '../../Value';
-import {SocketContext} from '../../Socket';
+import { SocketContext } from '../../Socket';
+import axios from 'axios';
+
 import {
     Chart as ChartJS,
     LineController,
@@ -12,7 +14,6 @@ import {
     Tooltip,
     Legend,
     LineElement,
-    Colors,
 } from 'chart.js';
 
 ChartJS.register(
@@ -33,21 +34,32 @@ const PriceChart = () => {
     const [times, setTimes] = useState([]);
     const value = useContext(ValueContext);
     const socket = useContext(SocketContext);
-    
+    const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
 
     useEffect(() => {
-        socket.on('creditHistoryChange', ({datas, times}) => {
+        // Fetch initial data from the server
+        const fetchInitialData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/greenCreditHistory`);
+                setDatas(response.data.data);
+                setTimes(response.data.time);
+            } catch (error) {
+                console.error("Error fetching initial green credit history: ", error);
+            }
+        };
+
+        fetchInitialData();
+
+        // Listen for real-time updates
+        socket.on('creditHistoryChange', ({ datas, times }) => {
             setDatas(datas);
-            
             setTimes(times);
-           
         });
-   
 
         return () => {
             socket.off('creditHistoryChange');
         };
-    }, [value]);
+    }, [socket]);
 
     const data = {
         labels: times,
@@ -79,7 +91,6 @@ const PriceChart = () => {
                 beginAtZero: true,
             },
         },
-        
     };
 
     return (
@@ -92,3 +103,4 @@ const PriceChart = () => {
 };
 
 export default PriceChart;
+
