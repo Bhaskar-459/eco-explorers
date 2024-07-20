@@ -1,0 +1,23 @@
+.market-scenario {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.market-scenario h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.chart-scroll-container {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.chart-container {
+  width: 200%;
+  height: 500px;
+  display: inline-block;
+  vertical-align: top;
+}
