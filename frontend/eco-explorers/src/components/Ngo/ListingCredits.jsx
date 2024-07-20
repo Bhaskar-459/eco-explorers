@@ -48,8 +48,7 @@ const ListingCredits = () => {
   };
 
   return (
-    <div className="home">
-      <MarketScenario className="market-scenario" />
+    
     <div className="listing-credits">
       <h2>Listing Credits</h2>
       <button onClick={handleSellClick}>Sell</button>
@@ -98,7 +97,6 @@ const ListingCredits = () => {
           <button type="submit">Confirm</button>
         </form>
       )}
-    </div>
     </div>
   );
 };

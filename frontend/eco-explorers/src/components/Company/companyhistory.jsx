@@ -20,7 +20,7 @@ const transactions = [
   },
 ];
 
-const History = () => {
+const CompanyHistory = () => {
   return (
     <div className="history-container">
       <h2>Transaction History</h2>
@@ -59,4 +59,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default CompanyHistory;

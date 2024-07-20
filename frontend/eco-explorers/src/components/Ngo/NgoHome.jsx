@@ -7,6 +7,8 @@ import Header from '../../Common/Home/header';
 import { Routes, Route } from 'react-router-dom';
 import NgoProfile from './NgoProfile';
 import VerifyNgoCredits from './NgoVerify';
+import Home from './home';
+import Ngohistory from './Ngohistory';
 function NgoHome() {
   return (
     <div className="App">
@@ -17,11 +19,10 @@ function NgoHome() {
           
           <div className="second">
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="my-profile" element={<NgoProfile />} />
               <Route path="verify-ngo-credits" element={<VerifyNgoCredits />} />
-              {/* Add more routes as needed */}
-              <Route path="/" element={<ListingCredits />} />
-              {/* <ListingCredits className="listing-credits" /> */}
+              <Route path="history" element={<Ngohistory />} />
             </Routes>
           </div>
         </div>
