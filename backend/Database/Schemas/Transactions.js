@@ -5,27 +5,26 @@ const transactionsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    category: {
-        type: String,
-        enum: ['Ngo', 'People', 'Company'],
-        required: true
-    },
-    PersonName: {
+    SellerName: {
         type: mongoose.Schema.Types.ObjectId,
         refPath: 'entityType',
         required: true
     },
-    entityType: {
+    SellerType: {
         type: String,
-        enum: ['People', 'Company', 'Ngo']
+        enum: ['Company', 'Ngo']
+    },
+    BuyerName: {
+        type: mongoose.Schema.Types.ObjectId,
+        refPath: 'entityType',
+        required: true
+    },
+    BuyerType: {
+        type: String,
+        enum: ['People', 'Company']
     },
     TransactionDate: {
         type: Date,
-        required: true
-    },
-    TransactionType: {
-        type: String,
-        enum: ['Buy', 'Sell'],
         required: true
     },
     creditValue: {

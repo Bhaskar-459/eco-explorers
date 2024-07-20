@@ -3,7 +3,8 @@ import NgoSell from "./NgoSell.js";
 import CompanySell from "./CompanySell.js";
 import IndividualSell from "./IndividualSell.js";
 
-const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice,entity) => {
+const SellCreditsFunc = async (sellerId,value, noOfCredits, creditPrice,entity) => {
+    
     const greenCreditDoc = await greenCredit.findOne();
     console.log(greenCreditDoc,creditPrice);
     const sellList = greenCreditDoc.SellList;
@@ -12,16 +13,16 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice,entity) 
 
     if (buyList.length === 0) {
         sellList.push({
-            id: personId,
+            id: sellerId,
             name: entity,
             price: creditPrice,
             quantity: noOfCredits
         });
-
+        sellList.sort((a, b) => a.price - b.price);
         await greenCreditDoc.save();
         return "No buyers available";
     } else {
-        buyList.sort((a, b) => b.price - a.price);
+        // buyList.sort((a, b) => b.price - a.price);
 
         let totalCreditsAvailable = 0;
         let sufficientPriceAvailable = false;
@@ -40,12 +41,12 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice,entity) 
         if (!sufficientPriceAvailable) {
             // Not enough buyers at the selling price
             sellList.push({
-                id: personId,
+                id: sellerId,
                 name: entity,
                 price: creditPrice,
                 quantity: noOfCredits
             });
-
+            sellList.sort((a, b) => a.price - b.price);
             // Save changes to the database
             await greenCreditDoc.save();
             return "Not enough buyers at the selling price";
@@ -54,11 +55,10 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice,entity) 
             let remainingCreditsToSell = noOfCredits;
 
             while (remainingCreditsToSell > 0 && buyList.length > 0) {
-                let currentBuyer = buyList[buyList.length - 1];
+                let currentBuyer = buyList[0];
 
                 if (currentBuyer.price < creditPrice) {
-                    // No more buyers at the required price
-                    break;
+                    return "No more buyers at the required price";
                 }
 
                 if (currentBuyer.quantity <= remainingCreditsToSell) {
@@ -87,11 +87,12 @@ const SellCreditsFunc = async (personId,value, noOfCredits, creditPrice,entity) 
             if (remainingCreditsToSell > 0) {
                 // If we couldn't sell all credits, add to the sell list
                 sellList.push({
-                    id: personId,
+                    id: sellerId,
                     name: "Company",
                     price: actPrice,
                     quantity: remainingCreditsToSell
                 });
+                sellList.sort((a, b) => a.price - b.price);
             }
 
             // Update the current value

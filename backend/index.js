@@ -21,10 +21,6 @@ app.get('/', (req, res) => {
     }
 );
 
-// app.get('/login', (req, res) => {
-//     res.send("LOGIN PAGE");
-//     }
-// );
 app.use('/api',apiRoutes);
 
 mongoose.connect(process.env.MONGODB_URI)
@@ -49,10 +45,6 @@ const io = new Server(server, {
 });
 io.on('connection', (socket) => {
     console.log(`user connected at ${socket.id}`);
-
-    // socket.emit('welcome', 'welcome to the server')
-    // socket.broadcast.emit('welcome', ${socket.id} joined the server)
-
     socket.on('message', (msg) => {
         console.log(msg);
         socket.broadcast.emit('received_msg', msg);
