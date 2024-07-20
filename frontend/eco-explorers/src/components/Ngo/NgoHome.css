@@ -52,13 +52,7 @@ a
     flex-direction: column;
   }
   
-  .market-scenario {
-    height: 30%;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 10px;
-    color: black;
-  }
+  
   
   
   .listing-credits {

@@ -28,7 +28,7 @@ const App = () => {
       console.log('connected ', socket.id)
     });
     socket.on('creditValueChange', (val) => {
-      setValue(val).then(console.log('creditvaluechanged ', value));
+      setValue(val);
     });
     return () => {
       socket.disconnect();
