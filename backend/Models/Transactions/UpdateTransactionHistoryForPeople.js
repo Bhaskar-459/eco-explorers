@@ -11,6 +11,7 @@ const updateTransactionHistoryForPeople = async ({TransactionObj},person,transac
         }
         person.transactionSchema.push(transaction);
         await person.save();
+        return "Transaction history updated successfully";
     }
     catch (error) {
         return JSON.stringify({ message: error.message });

@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+const entityType = ['Company', 'Ngo', 'People'];
+
 const transactionsSchema = new mongoose.Schema({
     TransactionId: {
         type: String,
@@ -35,6 +37,10 @@ const transactionsSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    entityType: {
+        type: String,
+        enum: entityType
+    }
 });
 
 const TransactionsModel = mongoose.model('Transactions', transactionsSchema);
