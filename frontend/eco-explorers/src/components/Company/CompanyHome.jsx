@@ -11,6 +11,7 @@ import VerifyGCP from './VerifyGCP';
 import Home from './home';
 import Header from '../../Common/Home/header';
 import './CompanyHome.css';
+import CompanyHistory from './companyhistory';
 
 const CompanyHome = props => {
   return (
@@ -24,6 +25,7 @@ const CompanyHome = props => {
               <Route path='/' element={<Home/>}/>
               <Route path='company-profile' element={<CompanyProfile/>}/>
               <Route path='company-verify-gcp' element={<VerifyGCP/>}/>
+              <Route path='company-history' element={<CompanyHistory/>}/>
             </Routes>
           </div>
         </div>

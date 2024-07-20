@@ -20,11 +20,11 @@ const CompanyProfile = () => {
 
   return (
     <div className="content">
+      <ProfileDetails />
       {isEditing ? (
         <EditProfile companyDetails={companyDetails} onSave={handleSave} />
       ) : (
         <>
-          <ProfileDetails />
           <button className='editButton' onClick={handleEditClick}>Edit Profile</button>
         </>
       )}
