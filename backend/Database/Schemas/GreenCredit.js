@@ -1,35 +1,39 @@
 import mongoose from "mongoose";
 
-const entityType = ('People', 'Company', 'Ngo');
+const entityType = ['People', 'Company', 'Ngo'];
 
-const List = new mongoose.Schema({
-    id : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : entityType
+const ListSchema = new mongoose.Schema({
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        refPath: 'entityType'
     },
-    name : {
-        type : String,
+    name: {
+        type: String,
     },
-    price : {
-        type : Number,
+    price: {
+        type: Number,
     },
-    quantity : {
-        type : Number,
+    quantity: {
+        type: Number,
+    },
+    entityType: {
+        type: String,
+        enum: entityType
     }
 });
 
 const greenCreditSchema = new mongoose.Schema({
-    currValue : {
-       type : Number, 
-       default : 0
+    currValue: {
+        type: Number,
+        default: 0
     },
-    BuyList :{
-        type : [List],
-        default : []
+    BuyList: {
+        type: [ListSchema],
+        default: []
     },
-    SellList :{
-        type : [List],
-        default : []
+    SellList: {
+        type: [ListSchema],
+        default: []
     }
 });
 

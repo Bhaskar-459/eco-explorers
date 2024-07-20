@@ -34,10 +34,10 @@ io.on('connection', (socket) => {
     // socket.emit('welcome', 'welcome to the server')
     // socket.broadcast.emit('welcome', ${socket.id} joined the server)
 
-    socket.on('message', (msg) => {
-        console.log(msg);
-        socket.broadcast.emit('received_msg', msg);
-    });
+    // socket.on('message', (msg) => {
+    //     console.log(msg);
+    //     socket.broadcast.emit('received_msg', msg);
+    // });
     
     setInterval(() => {
         let newvalue=Math.floor(Math.random() * 1000);

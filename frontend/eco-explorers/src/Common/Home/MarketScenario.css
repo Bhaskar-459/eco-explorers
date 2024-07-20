@@ -12,15 +12,14 @@
 }
 
 .chart-scroll-container {
-  overflow-x: hidden;
-  white-space: nowrap;
+  overflow-x: auto;
   overflow-y: hidden;
+  white-space: nowrap;
 }
 
 .chart-container {
-  width: 100%;
+  width: 200%; 
   height: 60vh;
   display: inline-block;
   vertical-align: top;
-
 }
