@@ -16,7 +16,10 @@ const io = new Server(server, {
 });
 
 
-const port = 4001;
+const port = 5000;
+let datas=[];
+let times=[];
+const MAX_DATA_POINTS = 30;
 
 app.use(cors());
 
@@ -35,11 +38,30 @@ io.on('connection', (socket) => {
         console.log(msg);
         socket.broadcast.emit('received_msg', msg);
     });
-
+    
+    setInterval(() => {
+        let newvalue=Math.floor(Math.random() * 1000);
+        socket.broadcast.emit('creditValueChange', newvalue);
+        if (datas.length >= MAX_DATA_POINTS) {
+            datas.shift(datas.length-MAX_DATA_POINTS);
+        }
+        datas = [...datas, newvalue];
+        
+    
+    
+        if (times.length >= MAX_DATA_POINTS) {
+            times.shift(times.length-MAX_DATA_POINTS);
+        }
+        times = [...times, new Date().toLocaleTimeString()];
+        socket.emit('creditHistoryChange', {datas, times});        
+    }, 1000);
+    
     socket.on('disconnect', () => {
         console.log(`user disconnected at ${socket.id}`);
     });
-});
+    });
+   
+
 
 server.listen(port, () => {
     console.log('listening on port ' + port);

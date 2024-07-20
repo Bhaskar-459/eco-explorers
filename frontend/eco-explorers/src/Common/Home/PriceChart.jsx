@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Line } from 'react-chartjs-2';
 import { ValueContext } from '../../Value';
+import {SocketContext} from '../../Socket';
 import {
     Chart as ChartJS,
     LineController,
@@ -31,28 +32,21 @@ const PriceChart = () => {
     const [datas, setDatas] = useState([]);
     const [times, setTimes] = useState([]);
     const value = useContext(ValueContext);
+    const socket = useContext(SocketContext);
+    
 
     useEffect(() => {
-  
-            setDatas((prevDatas) => {
-                if (prevDatas.length >= MAX_DATA_POINTS) {
-                    prevDatas.shift();
-                }
-                const newDatas = [...prevDatas, value];
-                // localStorage.setItem('datas', JSON.stringify(newDatas));
-                return newDatas;
-            });
-            setTimes((prevTimes) => {
-                if (prevTimes.length >= MAX_DATA_POINTS) {
-                    prevTimes.shift();
-                }
-                const newTimes = [...prevTimes, new Date().toLocaleTimeString()];
-                // localStorage.setItem('times', JSON.stringify(newTimes));
-                return newTimes;
-            });
+        socket.on('creditHistoryChange', ({datas, times}) => {
+            setDatas(datas);
+            
+            setTimes(times);
+           
+        });
    
 
-        return ;
+        return () => {
+            socket.off('creditHistoryChange');
+        };
     }, [value]);
 
     const data = {
