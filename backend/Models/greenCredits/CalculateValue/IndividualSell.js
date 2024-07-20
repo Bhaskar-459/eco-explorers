@@ -6,6 +6,7 @@ import updateTransactionHistoryForPeople from '../../Transactions/updateTransact
 const IndividualSell = async (personId, value, noOfCredits) => {
     let person = await Person.findOne({_id: personId});
     person.portfolio.currentCredits -= noOfCredits;
+    console.log(person.portfolio.currentCredits);
         await person.save();
 
         const transactionObj = {
@@ -17,10 +18,10 @@ const IndividualSell = async (personId, value, noOfCredits) => {
             transactionStatus: "Executed"
         };
 
-        await createTransaction({TransactionObj:transactionObj});
+        // await createTransaction({TransactionObj:transactionObj});
         await updateTransactionHistoryForPeople(transactionObj, person, "Sell");
 
-        res.json(person);
+        return "Credits sold successfully";
 }
 
 export default IndividualSell;

@@ -6,12 +6,14 @@ const PostsellCreditsFunc = async (req, res) => {
     const email = req.body.email;
     const creditprice = req.body.creditPrice;
     const noOfCredits = req.body.noOfCredits;
+    // console.log(email,creditprice,noOfCredits, typeof creditprice,"heelooeleo from post sell credits");
     const date = new Date();
     const ngo = await Ngo.findOne
     ({
         email : email
     });
     let id = ngo._id;
+    console.log(ngo.ngoCredits,"hehehehhehe");
     try{
        if(ngo.ngoCredits < noOfCredits){
               res.json({ message: "Not enough credits" });

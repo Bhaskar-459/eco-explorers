@@ -7,7 +7,7 @@ const CompanyBuy = async (companyId, noOfCredits, creditPrice) => {
         if (!comp) {
             throw new Error("Company not found");
         }
-        comp.GeneratedCredits += noOfCredits;
+        comp.creditsAvailable += noOfCredits;
         company.transactionHistory.push({
             id: company._id,
             date: new Date(),
@@ -27,7 +27,7 @@ const CompanyBuy = async (companyId, noOfCredits, creditPrice) => {
             TransactionType: "Buy"
         };
 
-        await createTransaction({ TransactionObj });
+        // await createTransaction({ TransactionObj });
 
         return res.status(200).json({ message: "Credits Bought Successfully" });
     }

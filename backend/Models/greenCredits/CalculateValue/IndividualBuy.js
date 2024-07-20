@@ -5,6 +5,7 @@ import {v4 as uuidv4} from 'uuid';
 
 const IndividualBuy = async (personId, noOfCredits, creditPrice) => {
     try {
+        console.log(personId, noOfCredits, creditPrice);
         const person = await People.findById(personId);
         if (!person) {
             throw new Error("Person not found");
@@ -21,10 +22,10 @@ const IndividualBuy = async (personId, noOfCredits, creditPrice) => {
             transactionStatus: "Executed"
         };
 
-        const savedTransaction = await createTransaction({ TransactionObj: transactionObj });
+        // const savedTransaction = await createTransaction({ TransactionObj: transactionObj });
         await updateTransactionHistoryForPeople({ TransactionObj: transactionObj }, person, "Buy");
-
-        res.status(200).json({ message: 'Credits bought successfully' });    
+        return "Credits bought successfully";
+        // res.status(200).json({ message: 'Credits bought successfully' });    
     }
     catch (error) {
         console.error(error);

@@ -2,7 +2,8 @@ import CompanyToSell from "../../../Database/Schemas/CompanyToSell.js";
 import createTransaction from "../../Transactions/createTransaction.js";
 import { v4 as uuidv4 } from 'uuid';
 const CompanySell = async (id, value, noOfCredits) => {
-    let company = await CompanyToSell.findOne({ _id: id });
+    console.log(id, value, noOfCredits);
+    let company = await CompanyToSell.findById(id);
     if (!company) {
         throw new Error("Company not found");
     }
@@ -26,7 +27,7 @@ const CompanySell = async (id, value, noOfCredits) => {
                 TransactionType: "Sell"
             }
 
-        await createTransaction({TransactionObj});
+        // await createTransaction({TransactionObj});
         return res.status(200).json({message: "Credits Sold Successfully"});
 }
 
