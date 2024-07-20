@@ -48,6 +48,10 @@ const companySchema = new mongoose.Schema({
         type: [history],
         default: [],
     },
+    walletAmount: {
+        type: Number,
+        default: 0
+    },
 
 });
 

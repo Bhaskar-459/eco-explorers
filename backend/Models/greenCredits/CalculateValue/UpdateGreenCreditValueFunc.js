@@ -8,8 +8,7 @@ const UpdateGreenCreditValueFunc = async (personId, noOfCredits, creditPrice, ty
             throw new Error("Green credit document not found");
         }
 
-        const value = greenCreditDoc.currValue;
-        const finalValue = await CalculateValueFunc(personId, value, noOfCredits, creditPrice, type,entity);
+        const finalValue = await CalculateValueFunc(personId, noOfCredits, creditPrice, type,entity);
         
         if (typeof finalValue === "string") {
             return finalValue;

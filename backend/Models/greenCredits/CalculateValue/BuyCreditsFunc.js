@@ -15,12 +15,12 @@ const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice,entity) 
             price: creditPrice,
             quantity: noOfCredits
         });
-
+        buyList.sort((a, b) => b.price - a.price);
         await greenCreditDoc.save();
         return "No sellers in the market";
     }
 
-    sellList.sort((a, b) => a.price - b.price);
+    // sellList.sort((a, b) => a.price - b.price);
 
     let totalCreditsAvailable = 0;
     let sufficientPriceAvailable = false;
@@ -48,6 +48,7 @@ const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice,entity) 
             price: creditPrice,
             quantity: noOfCredits
         });
+        buyList.sort((a, b) => b.price - a.price);
         await greenCreditDoc.save();
         return "Not enough sellers at the buying price";
     } else {
@@ -87,6 +88,7 @@ const BuyCreditsFunc = async (personId, value, noOfCredits, creditPrice,entity) 
                 price: actPrice,
                 quantity: remainingCreditsToBuy
             });
+            buyList.sort((a, b) => b.price - a.price);
         }
 
         greenCreditDoc.currValue = actPrice;
