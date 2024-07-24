@@ -61,38 +61,35 @@ const MAX_DATA_POINTS = 30;
 let datas = [];
 let times = [];
 
-// setInterval(async () => {
-//     try {
-//         const greenCreditDoc = await greenCredit.findOne();
-//         if (greenCreditDoc) {
-//             let newvalue = greenCreditDoc.currValue;
-//             if (datas.length >= MAX_DATA_POINTS) {
-//                 datas.shift(datas.length - MAX_DATA_POINTS);
-//             }
-//             datas = [...datas, newvalue];
+setInterval(async () => {
+    try {
+        const greenCreditDoc = await greenCredit.findOne();
+        if (greenCreditDoc) {
+            let newvalue = greenCreditDoc.currValue;
+            if (datas.length >= MAX_DATA_POINTS) {
+                datas.shift(datas.length - MAX_DATA_POINTS);
+            }
+            datas = [...datas, newvalue];
 
-//             if (times.length >= MAX_DATA_POINTS) {
-//                 times.shift(times.length - MAX_DATA_POINTS);
-//             }
-//             times = [...times, new Date().toLocaleTimeString()];
+            if (times.length >= MAX_DATA_POINTS) {
+                times.shift(times.length - MAX_DATA_POINTS);
+            }
+            times = [...times, new Date().toLocaleTimeString()];
 
-//             await greenCreditHistory.updateOne(
-//                 {},
-//                 {
-//                     $set: {
-//                         data: datas,
-//                         time: times
-//                     }
-//                 },
-//                 { upsert: true }
-//             );
+            await greenCreditHistory.updateOne(
+                {},
+                {
+                    $set: {
+                        data: datas,
+                        time: times
+                    }
+                },
+                { upsert: true }
+            );
 
-//             io.emit('creditHistoryChange', { datas, times });
-//         }
-//     } catch (error) {
-//         console.log("Error updating GreenCreditHistory: ", error.message);
-//     }
-// }, 5000);
-
-
-
+            io.emit('creditHistoryChange', { datas, times });
+        }
+    } catch (error) {
+        console.log("Error updating GreenCreditHistory: ", error.message);
+    }
+}, 5000);
