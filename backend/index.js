@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 app.use('/api', apiRoutes);
 console.log("hi");
 // mongoose.connect("mongodb://0.0.0.0:27017/")
-// mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('Connected to MongoDB');
     })
@@ -43,53 +43,60 @@ const io = new Server(server, {
         credentials: true
     }
 });
-
+let socketInstance;
 io.on('connection', (socket) => {
+    socketInstance=socket;
     console.log(`user connected at ${socket.id}`);
-
-    socket.on('message', (msg) => {
-        console.log(msg);
-        socket.broadcast.emit('received_msg', msg);
-    });
-
     socket.on('disconnect', () => {
         console.log(`user disconnected at ${socket.id}`);
     });
 });
+export default socketInstance;
+// const MAX_DATA_POINTS = 30;
+// let datas = [];
+// let times = [];
+// const fetchInitialData = async () => {
+//     try {
+//         const response = await axios.get(`${base_url}/api/greenCreditHistory`);
+//         datas=response.data.data;
+//         times=response.data.time;
+//         value=response.data.data[-1];
+//     } catch (error) {
+//         console.error("Error fetching initial green credit history: ", error);
+//     }
+// };
 
-const MAX_DATA_POINTS = 30;
-let datas = [];
-let times = [];
+// fetchInitialData();
+// setInterval(async () => {
+//     try {
+//         const greenCreditDoc = await greenCredit.findOne();
+//         if (greenCreditDoc) {
+//             let newvalue = greenCreditDoc.currValue;
+//             if (datas.length >= MAX_DATA_POINTS) {
+//                 datas.shift(datas.length - MAX_DATA_POINTS);
+//             }
+//             datas = [...datas, newvalue];
 
-setInterval(async () => {
-    try {
-        const greenCreditDoc = await greenCredit.findOne();
-        if (greenCreditDoc) {
-            let newvalue = greenCreditDoc.currValue;
-            if (datas.length >= MAX_DATA_POINTS) {
-                datas.shift(datas.length - MAX_DATA_POINTS);
-            }
-            datas = [...datas, newvalue];
+//             if (times.length >= MAX_DATA_POINTS) {
+//                 times.shift(times.length - MAX_DATA_POINTS);
+//             }
+//             times = [...times, new Date().toLocaleTimeString()];
 
-            if (times.length >= MAX_DATA_POINTS) {
-                times.shift(times.length - MAX_DATA_POINTS);
-            }
-            times = [...times, new Date().toLocaleTimeString()];
+//             await greenCreditHistory.updateOne(
+//                 {},
+//                 {
+//                     $set: {
+//                         data: datas,
+//                         time: times
+//                     }
+//                 },
+//                 { upsert: true }
+//             );
 
-            await greenCreditHistory.updateOne(
-                {},
-                {
-                    $set: {
-                        data: datas,
-                        time: times
-                    }
-                },
-                { upsert: true }
-            );
+//             io.emit('creditHistoryChange', { datas, times });
+//         }
+//     } catch (error) {
+//         console.log("Error updating GreenCreditHistory: ", error.message);
+//     }
+// }, 5000);
 
-            io.emit('creditHistoryChange', { datas, times });
-        }
-    } catch (error) {
-        console.log("Error updating GreenCreditHistory: ", error.message);
-    }
-}, 5000);
