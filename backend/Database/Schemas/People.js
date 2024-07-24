@@ -27,33 +27,11 @@ const portfolioSchema = new mongoose.Schema({
 });
 
 const transactionSchema = new mongoose.Schema({
-    transactionId: {
-        type: String,
-        required: true,
-    },
-    transactionCreditValue: {
-        type: Number,
-        required: true,
-    },
-    transactionNoOfCredits: {
-        type: Number,
-        required: true,
-    },
-    transactionDate: {
-        type: Date,
-        default: Date.now,
-        required: true,
-    },
-    transactionType: {
-        type: String,
-        enum: ['Buy', 'Sell'],
-        required: true,
-    },
-    status: {
-        type: String,
-        enum: ["Pending", "Approved", "Rejected"],
-        required: true,
-    }
+    transactionId: { type: String, required: true },
+    transactionCreditValue: { type: Number, required: true },
+    transactionNoOfCredits: { type: Number, required: true },
+    transactionDate: { type: Date, required: true },
+    transactionType: { type: String, required: true }
 });
 
 const peopleSchema = new mongoose.Schema({
