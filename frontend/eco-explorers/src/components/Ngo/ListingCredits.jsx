@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MarketScenario from '../../Common/Home/MarketScenario';
+import './ListingCredits.css';  // Import the CSS file
 
 const ListingCredits = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -7,7 +7,7 @@ const ListingCredits = () => {
   const [password, setPassword] = useState('');
   const [creditsToSell, setCreditsToSell] = useState('');
   const [price, setPrice] = useState('');
-  let ngoDetails=JSON.parse(localStorage.getItem("ngoDetails"));
+  let ngoDetails = JSON.parse(localStorage.getItem("ngoDetails"));
   let pass = ngoDetails.personalInfo.password;
 
   const handleSellClick = () => {
@@ -20,8 +20,6 @@ const ListingCredits = () => {
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
-    // Implement password authentication logic here
-    // For demo purposes, let's assume the password is 'password'
     if (password === pass) {
       setIsAuthenticated(true);
     } else {
@@ -40,63 +38,68 @@ const ListingCredits = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Implement form submission logic here
-    console.log(`Credits to Sell: ${creditsToSell}, Expected Price: ${expectedPrice}`);
-    // Reset form fields
+    console.log(`Credits to Sell: ${creditsToSell}, Expected Price: ${price}`);
     setCreditsToSell('');
-    setExpectedPrice('');
+    setPrice('');
   };
 
   return (
-    
-    <div className="listing-credits">
-      <h2>Listing Credits</h2>
-      <button onClick={handleSellClick}>Sell</button>
-      
-      {showPopup && (
-        <div className="popup">
-          <div className="popup-content">
-            <h3>Authenticate</h3>
-            <form onSubmit={handlePasswordSubmit}>
-              <input
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-              <button type="submit">Submit</button>
-            </form>
-          </div>
-        </div>
-      )}
+    <div className= 'page-container'>
+      <div className="listing-credits">
+        <h2>Listing Credits</h2>
+        {!isAuthenticated && (
+          <button onClick={handleSellClick} className="sell-button">Sell</button>
+        )}
+        
+        {showPopup && (
+          <>
+            <div className="overlay"></div>
+            <div className="popup">
+              <div className="popup-content">
+                <h3>Authenticate</h3>
+                <form onSubmit={handlePasswordSubmit}>
+                  <input
+                    type="password"
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    required
+                    className="password-input"
+                  />
+                  <button type="submit" className="submit-button">Submit</button>
+                </form>
+              </div>
+            </div>
+          </>
+        )}
 
-      {isAuthenticated && (
-        <form onSubmit={handleFormSubmit} className="sell-form">
-          <div>
-            <p>Listing Credits to Sell: </p>
-            <p>Price per Credit: </p>
-            <label>No of credits to sell:</label>
-            <input
-              type="number"
-              value={creditsToSell}
-              onChange={handleCreditsToSellChange}
-              required
-            />
-          </div>
-          <div>
-            <label>Price</label>
-            <input
-              type="number"
-              value={price}
-              onChange={handlePriceChange}
-              required
-            />
-          </div>
-          <p>Excpected Amount {creditsToSell * price}</p>
-          <button type="submit">Confirm</button>
-        </form>
-      )}
+        {isAuthenticated && (
+          <form onSubmit={handleFormSubmit} className="sell-form">
+            <div className="form-group">
+              <label>No of credits to sell:</label>
+              <input
+                type="number"
+                value={creditsToSell}
+                onChange={handleCreditsToSellChange}
+                required
+                className="credits-input"
+              />
+            </div>
+            <div className="form-group">
+              <label>Price per Credit:</label>
+              <input
+                type="number"
+                value={price}
+                onChange={handlePriceChange}
+                required
+                className="price-input"
+              />
+            </div>
+            <p>Expected Amount: {creditsToSell * price}</p>
+            <button type="submit" className="confirm-button">Confirm</button>
+          </form>
+        )}
+      </div>
     </div>
   );
 };
