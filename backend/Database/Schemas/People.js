@@ -31,7 +31,12 @@ const transactionSchema = new mongoose.Schema({
     transactionCreditValue: { type: Number, required: true },
     transactionNoOfCredits: { type: Number, required: true },
     transactionDate: { type: Date, required: true },
-    transactionType: { type: String, required: true }
+    transactionType: { type: String, required: true },
+    status :{
+        type : String,
+        enum : ["Pending", "Approved"],
+        default:"Pending"
+    }
 });
 
 const peopleSchema = new mongoose.Schema({

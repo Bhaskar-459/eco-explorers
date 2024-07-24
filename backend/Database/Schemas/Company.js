@@ -15,7 +15,9 @@ const history = new mongoose.Schema({
     },
     status :{
         type : String,
-        enum : ["Pending", "Approved", "Rejected"],
+        enum : ["Pending", "Approved"],
+        default : "Pending"
+
     }
 });
 const companySchema = new mongoose.Schema({

@@ -1,23 +1,17 @@
 import React from 'react'
 import './Ngohistory.css';
-const transactions = [
-  {
-    transactionid: 1,
-    date: '2021-01-01',
-    time: '12:00',
-    credits: 50,
-    creditval: 100,
-    type: 'bought',
-  },
-  {
-    transactionid: 2,
-    date: '2021-01-02',
-    time: '12:00',
-    credits: 25,
-    creditval: 100,
-    type: 'sold',
-  },
-];
+import axios from 'axios';
+const [transactions,setTransactions] = useState([]);
+
+useEffect(() => {
+      try {
+
+          const response = axios.get(`${base_url}/api/`);
+          setTransactions(response.data);
+      } catch (error) {
+          console.error("Error fetching initial green credit history: ", error);
+      }
+  })
 const Ngohistory = () => {
   return (
     <div className="history-container">
