@@ -17,8 +17,11 @@ const postSellCreditsFunc = async (req, res) => {
         }
         const personId = person._id;
         const newCreditValue = await updateGreenCreditValueFunc(personId,noOfCredits, creditPrice, "Sell","People");
-
-        if (typeof newCreditValue === 'string') {
+        console.log(newCreditValue);
+        if(typeof newCreditValue === 'number'){
+            return res.status(200).json({ message: 'Credits bought successfully' });
+        }
+        else if (typeof newCreditValue === 'string') {
             return res.status(400).json({ message: newCreditValue });
         }
 

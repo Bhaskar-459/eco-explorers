@@ -52,7 +52,7 @@ const SellCreditsFunc = async (sellerId, noOfCredits, creditPrice, entity) => {
 
         while (remainingCreditsToSell > 0 && buyList.length > 0) {
             const currentBuyer = buyList.shift();
-
+            console.log("current buyer", currentBuyer);
             if (currentBuyer.price < creditPrice) {
                 break;
             }

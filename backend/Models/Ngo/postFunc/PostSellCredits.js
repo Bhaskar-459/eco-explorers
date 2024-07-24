@@ -16,10 +16,9 @@ const PostsellCreditsFunc = async (req, res) => {
     console.log(ngo.ngoCredits,"hehehehhehe");
     try{
        if(ngo.ngoCredits < noOfCredits){
-              res.json({ message: "Not enough credits" });
-              return;
+            res.json({ message: "Not enough credits" });
+            return;
         }
-
         let value = await UpdateGreenCreditValueFunc(id,noOfCredits,creditprice,"Sell","Ngo");
         if (typeof value === "string") {
             res.json({ message: value });
