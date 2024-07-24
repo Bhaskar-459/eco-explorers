@@ -1,25 +1,16 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import './history.css'; // Ensure you create and import a CSS file for styling
+import axios from 'axios';
+const [transactions,setTransactions] = useState([]);
 
-const transactions = [
-  {
-    transactionid: 1,
-    date: '2021-01-01',
-    time: '12:00',
-    credits: 50,
-    creditval: 100,
-    type: 'bought',
-  },
-  {
-    transactionid: 2,
-    date: '2021-01-02',
-    time: '12:00',
-    credits: 25,
-    creditval: 100,
-    type: 'sold',
-  },
-];
-
+useEffect(() => {
+      try {
+          const response = axios.get(`${base_url}/api/ngo/get/getTransactionHistory/${emailId}`);
+          setTransactions(response.data);
+      } catch (error) {
+          console.error("Error fetching initial green credit history: ", error);
+      }
+  })
 const CompanyHistory = () => {
   return (
     <div className="history-container">
@@ -37,19 +28,19 @@ const CompanyHistory = () => {
         </thead>
         <tbody>
           {transactions.map((transaction) => (
-            <tr key={transaction.transactionid}>
-              <td>{transaction.transactionid}</td>
+            <tr key={transaction._id}>
+              <td>{transaction._id}</td>
               <td>{transaction.date}</td>
-              <td>{transaction.time}</td>
+              <td>{transaction.date}</td>
               <td
                 style={{
-                  color: transaction.type === 'bought' ? 'green' : 'red',
+                  color: transaction.type === 'buy' ? 'green' : 'red',
                 }}
               >
-                {transaction.type === 'bought' ? '⬆️ ' : '⬇️ '}
+                {transaction.type === 'buy' ? '⬆️ ' : '⬇️ '}
                 {transaction.credits}
               </td>
-              <td>{transaction.creditval}</td>
+              <td>{transaction.creditprice}</td>
               <td>{transaction.type}</td>
             </tr>
           ))}
