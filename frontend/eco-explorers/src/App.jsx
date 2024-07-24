@@ -52,7 +52,7 @@ const App = () => {
 
   return (
     <SocketContext.Provider value={socket}>
-      <ValueContext.Provider value={value}>
+      <ValueContext.Provider value={{value,setValue}}>
     <Router>
       <Routes>
       
