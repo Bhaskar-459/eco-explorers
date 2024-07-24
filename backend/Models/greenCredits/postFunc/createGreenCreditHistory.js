@@ -1,7 +1,7 @@
-import createGreenCreditHistory from "../../../Database/Schemas/GreenCreditHistory.js";
+import createGreenCredit from "../../../Database/Schemas/GreenCreditHistory.js";
 
 const createGreenCreditHistory = async (req, res) => {
-    const greenCreditDocHistory= new createGreenCreditHistory();
+    const greenCreditDocHistory= new createGreenCredit();
 
     try {
         await greenCreditDocHistory.save();

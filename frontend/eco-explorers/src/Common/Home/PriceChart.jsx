@@ -44,6 +44,7 @@ const PriceChart = () => {
                 const MAX_DATA_POINTS = 30;
 
                 const response = await axios.get(`${base_url}/api/greenCreditHistory`);
+                console.log(response)
                 setDatas(response.data.data);
                 setTimes(response.data.time);
                 value.setValue(response.data.data[-1]);

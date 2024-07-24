@@ -30,7 +30,9 @@ const App = () => {
     const fetchInitialData = async () => {
       try {
           const response = await axios.get(`${base_url}/api/greenCredits/get/getValue`);
-          setValue(response.data.currValue);
+          // console.log(response)
+          setValue(response.data.value);
+          // console.log(value)
       } catch (error) {
           console.error("Error fetching initial green credit history: ", error);
       }
