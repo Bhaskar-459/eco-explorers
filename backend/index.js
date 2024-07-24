@@ -43,15 +43,14 @@ const io = new Server(server, {
         credentials: true
     }
 });
-let socketInstance;
 io.on('connection', (socket) => {
-    socketInstance=socket;
     console.log(`user connected at ${socket.id}`);
     socket.on('disconnect', () => {
         console.log(`user disconnected at ${socket.id}`);
     });
 });
-export default socketInstance;
+
+export default io;
 // const MAX_DATA_POINTS = 30;
 // let datas = [];
 // let times = [];

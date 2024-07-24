@@ -1,4 +1,5 @@
 import React from 'react'
+import {useState,useEffect} from 'react'
 import './Ngohistory.css';
 import axios from 'axios';
 const [transactions,setTransactions] = useState([]);
