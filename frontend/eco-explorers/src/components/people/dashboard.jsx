@@ -1,15 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import './PeopleDashboard.css'; // Import the new CSS file
 
-const Dashboard = ({ children }) => {
+const Dashboard = () => {
+  const location = useLocation();
+
   return (
-    <div className="dashboard">
-      <nav className="sidebar">
+    <div className="dashboardUser">
+      <nav className="sidebarUser">
         <ul>
-          <li><Link to="">Home</Link></li>
-          <li><Link to="profile">My Profile</Link></li>
-          <li><Link to="history">History</Link></li>
-          <li><Link to="buy">Buy</Link></li>
+          <li>
+            <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/people/profile" className={location.pathname === '/profile' ? 'active' : ''}>
+              My Profile
+            </Link>
+          </li>
+          <li>
+            <Link to="/people/history" className={location.pathname === '/history' ? 'active' : ''}>
+              History
+            </Link>
+          </li>
+          <li>
+            <Link to="/people/buy" className={location.pathname === '/buy' ? 'active' : ''}>
+              Buy
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>

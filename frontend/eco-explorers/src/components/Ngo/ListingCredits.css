@@ -100,19 +100,20 @@
     background-color: #45a049;
   }
   
-  .confirm-button {
+  .confirm1-button {
     margin-top: 20px;
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50; /* Changed to green */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
+
   
-  .confirm-button:hover {
+  .confirm1-button:hover {
     background-color: #45a049; /* Darker green on hover */
+    
   }
   
   .sell-form {
