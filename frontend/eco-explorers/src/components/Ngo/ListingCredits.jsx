@@ -96,10 +96,10 @@ const ListingCredits = () => {
               />
             </div>
             <p>Expected Amount: {creditsToSell * price}</p>
-            <button type="submit" className="confirm-button">Confirm</button>
+            <button type="submit" className="confirm1-button" style={{ backgroundColor: '#4CAF50', color: 'white' }}>Confirm</button>
           </form>
         )}
-      </div>
+      </div> 
     </div>
   );
 };

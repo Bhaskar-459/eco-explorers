@@ -17,18 +17,31 @@ import VerifyNgoCredits from './components/Ngo/NgoVerify';
 import VerifyGCP from './components/Company/VerifyGCP';
 import PeopleHome from './components/people/PeopleHome';
 import CompanyProfile from './components/Company/CompanyProfile';
+import axios from 'axios';
+
 // import Frontend from './Common/WebSocket/DividedComponent';
 import { SocketContext, socket } from './Socket';
 import { ValueContext} from './Value';
+const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
+
 const App = () => {
   const [value, setValue] = useState(0);
   useEffect(() => {
+    const fetchInitialData = async () => {
+      try {
+          const response = await axios.get(`${base_url}/api/greenCredits/get/getValue`);
+          setValue(response.data.currValue);
+      } catch (error) {
+          console.error("Error fetching initial green credit history: ", error);
+      }
+    }
+    fetchInitialData();
     socket.connect();
     socket.on('connect', () => {
       console.log('connected ', socket.id)
     });
-    socket.on('creditValueChange', (val) => {
-      setValue(val);
+    socket.on('creditHistoryChange', ({data,time}) => {
+      setValue(data[-1]);
     });
     return () => {
       socket.disconnect();
@@ -39,7 +52,7 @@ const App = () => {
 
   return (
     <SocketContext.Provider value={socket}>
-      <ValueContext.Provider value={value}>
+      <ValueContext.Provider value={{value,setValue}}>
     <Router>
       <Routes>
       
