@@ -63,7 +63,6 @@ const SellCreditsFunc = async (sellerId, noOfCredits, creditPrice, entity) => {
             } else {
                 currentBuyer.quantity -= remainingCreditsToSell;
                 actPrice = currentBuyer.price;
-                remainingCreditsToSell = 0;
 
                 if (entity === "Ngo") {
                     await NgoSell(sellerId, actPrice, remainingCreditsToSell);
@@ -96,7 +95,7 @@ const SellCreditsFunc = async (sellerId, noOfCredits, creditPrice, entity) => {
         }
 
         await greenCreditDoc.save();
-        return "Credits sold successfully";
+        return 1;
     }
 };
 

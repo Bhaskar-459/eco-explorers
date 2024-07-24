@@ -7,6 +7,7 @@ const CompanySell = async (id, value, noOfCredits) => {
     if (!company) {
         throw new Error("Company not found");
     }
+    console.log(company,noOfCredits,"bye bye");
     company.GeneratedCredits -= noOfCredits;
         company.transactionHistory.push({
             id : company.id,
@@ -14,6 +15,7 @@ const CompanySell = async (id, value, noOfCredits) => {
             creditprice : value,
             noOfCredits : noOfCredits,
         });
+        console.log(company);   
         await company.save();
         const compId =  (await company.populate('id'))._id;
         const TransactionObj = 
@@ -28,7 +30,7 @@ const CompanySell = async (id, value, noOfCredits) => {
             }
 
         // await createTransaction({TransactionObj});
-        return res.status(200).json({message: "Credits Sold Successfully"});
+        return 1;
 }
 
 export default CompanySell;

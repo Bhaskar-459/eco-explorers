@@ -23,7 +23,7 @@ const IndividualBuy = async (personId, noOfCredits, creditPrice) => {
         // const savedTransaction = await createTransaction({ TransactionObj: transactionObj });
         await person.save();
         await updateTransactionHistoryForPeople({ TransactionObj: transactionObj }, person, "Buy");
-        return "Credits bought successfully";
+        return 1;
     }
     catch (error) {
         console.error(error);

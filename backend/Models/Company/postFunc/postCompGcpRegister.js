@@ -4,7 +4,7 @@ import company from "../../../Database/Schemas/Company.js";
 const postCompGcpRegister = async (req, res) => {
     try {
         const { emailId, gcpPlatformId } = req.body;
-        // console.log(emailId, gcpPlatformId);
+        console.log(emailId, gcpPlatformId);
 
         const Company = await company.findOne({ companyMail: emailId });
         if (!Company) {

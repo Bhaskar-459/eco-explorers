@@ -18,7 +18,7 @@ const postBuyCreditsFunc = async (req, res) => {
             return res.status(400).json({ message: newCreditValue });
         }
 
-        res.json(newCreditValue);
+        res.status(200).json({ message: "Credits sold successfully" });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: error.message });

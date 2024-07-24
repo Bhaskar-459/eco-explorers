@@ -14,7 +14,6 @@ const UpdateGreenCreditValueFunc = async (personId, noOfCredits, creditPrice, ty
         if (typeof finalValue === "string") {
             return finalValue;
         }
-        
         greenCreditDoc.currValue = finalValue;
         await greenCreditDoc.save();
 

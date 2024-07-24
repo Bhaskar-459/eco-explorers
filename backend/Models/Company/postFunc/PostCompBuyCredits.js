@@ -15,6 +15,7 @@ const postCompBuyCredits = async (req, res) => {
         if (typeof finalValue === "string") {
             return res.status(400).json({ message: finalValue });
         }
+        res.status(200).json({ message: "Credits sold successfully" });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
