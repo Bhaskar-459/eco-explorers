@@ -49,9 +49,9 @@ const transactionSchema = new mongoose.Schema({
         enum: ['Buy', 'Sell'],
         required: true,
     },
-    transactionStatus: {
+    status: {
         type: String,
-        enum: ['Pending', 'Executed'],
+        enum: ["Pending", "Approved", "Rejected"],
         required: true,
     }
 });

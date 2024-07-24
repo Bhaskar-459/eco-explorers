@@ -12,7 +12,11 @@ const historySchema = new mongoose.Schema({
     },
     noOfCredits: {
         type: Number,
-    }
+    },
+    status: {
+        type: String,
+        enum: ["Pending", "Approved", "Rejected"],
+    },
 });
 
 const companyToSellSchema = new mongoose.Schema({

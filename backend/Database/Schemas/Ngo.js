@@ -27,6 +27,10 @@ const history = new mongoose.Schema({
     },
     noOfCredits : {
         type : Number,
+    },
+    status :{
+        type : String,
+        enum : ["Pending", "Approved", "Rejected"],
     }
 });
 const ngoSchema = new mongoose.Schema({
