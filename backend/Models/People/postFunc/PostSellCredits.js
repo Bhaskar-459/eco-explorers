@@ -18,31 +18,11 @@ const postSellCreditsFunc = async (req, res) => {
         const personId = person._id;
         const newCreditValue = await updateGreenCreditValueFunc(personId,noOfCredits, creditPrice, "Sell","People");
         console.log(newCreditValue);
-        if(typeof newCreditValue === 'number'){
-            return res.status(200).json({ message: 'Credits bought successfully' });
+        if (typeof newCreditValue === "string") {
+            return res.json({message: newCreditValue});
         }
-        else if (typeof newCreditValue === 'string') {
-            return res.status(400).json({ message: newCreditValue });
-        }
+        res.status(200).json({ message: "Credits sold successfully" });
 
-        res.json(newCreditValue);
-
-        // person.portfolio.currentCredits -= noOfCredits;
-        // await person.save();
-
-        // const transactionObj = {
-        //     transactionId: new mongoose.Types.ObjectId().toString(),
-        //     transactionCreditValue:noOfCredits * creditPrice,
-        //     transactionNoOfCredits: noOfCredits,
-        //     transactionDate: new Date(),
-        //     transactionType: "Sell",
-        //     transactionStatus: "Executed"
-        // };
-
-        // await createTransaction({TransactionObj:transactionObj});
-        // await updateTransactionHistoryForPeople(transactionObj, person, "Sell");
-
-        // res.json(person);
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: error.message });

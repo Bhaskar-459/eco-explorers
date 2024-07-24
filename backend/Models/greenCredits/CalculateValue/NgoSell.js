@@ -3,13 +3,14 @@ import createTransaction from "../../Transactions/createTransaction.js";
 import { v4 as uuidv4 } from 'uuid';
 const NgoSell = async (ngoId, value,noOfCredits) => {
     // console.log(ngoId, value, noOfCredits);
+    console.log(noOfCredits,"ngo sell");
     let ngo = await Ngo.findById(ngoId);
     if (!ngo) {
         throw new Error("Ngo not found");
     }
 
     //  console.log(typeof value,"from ngo sell");
-    ngo.ngoCredits = ngo.ngoCredits - value;
+    ngo.ngoCredits = ngo.ngoCredits - noOfCredits;
 
     // updating the transaction history for the Ngo
     ngo.transactionHistory.push({
@@ -20,7 +21,7 @@ const NgoSell = async (ngoId, value,noOfCredits) => {
     });
     await ngo.save();
 
-    return ngo.transactionHistory;
+    return 1;
 }
 
 export default NgoSell;

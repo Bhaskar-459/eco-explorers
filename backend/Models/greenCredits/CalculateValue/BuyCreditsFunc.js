@@ -104,7 +104,7 @@ const BuyCreditsFunc = async (personId, noOfCredits, creditPrice, entity) => {
         }
 
         await greenCreditDoc.save();
-        return "Credits bought successfully";
+        return 1;
     }
 };
 
