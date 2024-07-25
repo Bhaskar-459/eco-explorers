@@ -31,7 +31,7 @@ const UpdateGreenCreditValueFunc = async (personId, noOfCredits, creditPrice, ty
             throw new Error("Green credit document not found");
         }
         // console.log("entityyeywasysxhn",entity);
-        // console.log(greenCreditDoc,creditPrice,typeof creditPrice,"from update green credit value func");
+        console.log(greenCreditDoc,creditPrice,typeof creditPrice,"from update green credit value func");
         const finalValue = await CalculateValueFunc(personId, noOfCredits, creditPrice, type, entity);
 
         if (typeof finalValue === "string") {

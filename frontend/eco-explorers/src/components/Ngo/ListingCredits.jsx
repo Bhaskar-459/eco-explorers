@@ -53,7 +53,7 @@ const ListingCredits = () => {
       if (response.status === 400) {
         alert(response.data.message || 'An error occurred.');
       } else {
-        alert('Credits sold successfully!');
+        alert(response.data.message);
         window.location.href = '/ngo';
       }
     } catch (error) {
