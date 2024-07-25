@@ -8,6 +8,7 @@ import './CompanyHome.css';
 import { Routes, Route } from 'react-router-dom';
 import CompanyProfile from './CompanyProfile';
 import VerifyGCP from './VerifyGCP';
+import RegisterGcp from './RegisterGcp';
 import Home from './home';
 import Header from '../../Common/Home/header';
 import './CompanyHome.css';
@@ -24,7 +25,7 @@ const CompanyHome = props => {
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='company-profile' element={<CompanyProfile/>}/>
-              <Route path='company-verify-gcp' element={<VerifyGCP/>}/>
+              <Route path='company-register-gcp' element={<RegisterGcp/>}/>
               <Route path='company-history' element={<CompanyHistory/>}/>
             </Routes>
           </div>

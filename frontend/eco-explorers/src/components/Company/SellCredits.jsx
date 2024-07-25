@@ -8,7 +8,7 @@ const SellCredits = () => {
     const [price, setPrice] = useState('');
 
     const handleSellClick = () => {
-      window.location.href = '/company-verify-gcp';
+      window.location.href = '/company/company-register-gcp';
     };
 
     const handleCreditsToSellChange = (e) => {
