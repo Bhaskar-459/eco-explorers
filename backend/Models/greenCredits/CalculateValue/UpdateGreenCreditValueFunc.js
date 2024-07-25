@@ -4,7 +4,7 @@ import greenCreditHistory from "../../../Database/Schemas/GreenCreditHistory.js"
 import io from "./../../../index.js"
 
 const historyChange = async (finalValue) => {
-    console.log("updateHistory")
+    // console.log("updateHistory")
     const MAX_DATA_POINTS = 30;
     const greenCreditHistoryDoc = await greenCreditHistory.findOne();
     let data = greenCreditHistoryDoc.data
@@ -19,12 +19,13 @@ const historyChange = async (finalValue) => {
     time = [...time, new Date().toLocaleString()];
     greenCreditHistoryDoc.data = data
     greenCreditHistoryDoc.time=time 
-    io.emit('creditHistoryChange', { data, time });
+    // console.log("On event",{data,time})
+    io.emit('creditHistoryChange', { data: data, time: time });
     await greenCreditHistoryDoc.save();
 }
 const UpdateGreenCreditValueFunc = async (personId, noOfCredits, creditPrice, type, entity) => {
     try {
-        console.log("update")
+        // console.log("update")
         const greenCreditDoc = await greenCredits.findOne();
         if (!greenCreditDoc) {
             throw new Error("Green credit document not found");
