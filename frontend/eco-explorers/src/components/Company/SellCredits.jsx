@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './BuySellCredits.css';
+import './styles/BuySellCredits.css';
 
 const SellCredits = () => {
     let [companyDetails, setCompanyDetails] = useState(JSON.parse(localStorage.getItem("companyDetails")));

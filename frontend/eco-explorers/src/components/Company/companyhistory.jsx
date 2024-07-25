@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './history.css'; // Ensure you create and import a CSS file for styling
+import './styles/history.css'; // Ensure you create and import a CSS file for styling
 import axios from 'axios';
 
 const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;

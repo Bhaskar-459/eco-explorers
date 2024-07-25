@@ -1,16 +1,11 @@
 import React from 'react'
-import MarketScenario from '../../Common/Home/MarketScenario';
-import Nav from '../../Common/Home/nav';
 import Dashboard from './Dashboard';
-import BuyCredits from './BuyCredits';
-import SellCredits from './SellCredits';
-import './CompanyHome.css';
 import { Routes, Route } from 'react-router-dom';
 import CompanyProfile from './CompanyProfile';
 import VerifyGCP from './VerifyGCP';
 import Home from './home';
 import Header from '../../Common/Home/header';
-import './CompanyHome.css';
+import './styles/CompanyHome.css';
 import CompanyHistory from './companyhistory';
 
 const CompanyHome = props => {

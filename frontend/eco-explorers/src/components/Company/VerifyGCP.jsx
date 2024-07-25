@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './VerifyGCP.css';
+import './styles/VerifyGCP.css';
 
 const VerifyGCP = () => {
     const [certificateId, setCertificateId] = useState('');
