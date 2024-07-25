@@ -10,7 +10,7 @@ const Dashboard = () => {
       <nav className="sidebarUser">
         <ul>
           <li>
-            <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
+            <Link to="" className={location.pathname === '/people' ? 'active' : ''}>
               Home
             </Link>
           </li>

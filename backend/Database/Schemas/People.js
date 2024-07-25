@@ -18,7 +18,7 @@ const personSchema = new mongoose.Schema({
 const portfolioSchema = new mongoose.Schema({
     walletAmount: {
         type: Number,
-        default: 0,
+        default: 1000,
     },
     currentCredits: {
         type: Number,
