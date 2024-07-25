@@ -34,6 +34,10 @@ const App = () => {
       }
     }
     fetchInitialData();
+    
+  }, []);
+  useEffect(()=>
+  {
     socket.connect();
     socket.on('connect', () => {
       console.log('connected ', socket.id)
@@ -44,8 +48,7 @@ const App = () => {
     return () => {
       socket.disconnect();
     }
-  }, []);
-  
+  },[socket])
 
 
   return (
