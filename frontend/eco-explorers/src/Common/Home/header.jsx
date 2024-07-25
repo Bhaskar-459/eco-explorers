@@ -1,6 +1,7 @@
 import React from 'react'
 import icfre from '../../assets/icfre.png';
 import moef from '../../assets/moef.png';
+import ecoexplore from '../../assets/eco.png';
 import nationallogo from '../../assets/nationallogo.png';
 import './styles/header.css';
  function Header() {
@@ -12,7 +13,7 @@ import './styles/header.css';
             <a href="https://icfre.gov.in/" target="_blank"><img src={icfre} alt="icfre" /></a>
         </div>
         <div className="gte">
-            <p className="green">Green Trade Exchange</p>
+            <img src={ecoexplore} alt="" />
         </div>
     </div>
   )

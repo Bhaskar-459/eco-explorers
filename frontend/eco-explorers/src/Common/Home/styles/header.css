@@ -26,10 +26,15 @@
 }
 
 .gte {
-    font-size: 1.5em; /* Adjust size as needed */
-    color: #006400; /* Example color for the text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-height: 8vh; /* Ensure the image scales with the header */
+    margin-right: 3%; /* Adjust margin as needed */
 }
 
-.green {
-    margin: 0; /* Remove default margin */
+.gte img {
+    max-height: 100%; /* Make sure the image fits within the gte div */
+    object-fit: contain; /* Keep the aspect ratio of the image */
 }
