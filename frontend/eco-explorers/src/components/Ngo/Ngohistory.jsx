@@ -1,4 +1,5 @@
 import React from 'react'
+
 import './styles/Ngohistory.css';
 const transactions = [
   {
@@ -18,6 +19,22 @@ const transactions = [
     type: 'sold',
   },
 ];
+
+import {useState,useEffect} from 'react'
+import './Ngohistory.css';
+import axios from 'axios';
+const [transactions,setTransactions] = useState([]);
+
+useEffect(() => {
+      try {
+
+          const response = axios.get(`${base_url}/api/`);
+          setTransactions(response.data);
+      } catch (error) {
+          console.error("Error fetching initial green credit history: ", error);
+      }
+  })
+
 const Ngohistory = () => {
   return (
     <div className="history-container">

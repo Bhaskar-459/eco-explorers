@@ -1,9 +1,10 @@
 import greenCredits from '../../../Database/Schemas/GreenCredit.js';
 import CalculateValueFunc from './CalculateFunc.js';
 import greenCreditHistory from "../../../Database/Schemas/GreenCreditHistory.js";
-import socketInstance from "./../../../index.js"
+import io from "./../../../index.js"
 
 const historyChange = async (finalValue) => {
+    console.log("updateHistory")
     const MAX_DATA_POINTS = 30;
     const greenCreditHistoryDoc = await greenCreditHistory.findOne();
     let data = greenCreditHistoryDoc.data
@@ -18,11 +19,12 @@ const historyChange = async (finalValue) => {
     time = [...time, new Date().toLocaleString()];
     greenCreditHistoryDoc.data = data
     greenCreditHistoryDoc.time=time 
-    socketInstance.emit('creditHistoryChange',{date,time});
+    io.emit('creditHistoryChange', { data, time });
     await greenCreditHistoryDoc.save();
 }
 const UpdateGreenCreditValueFunc = async (personId, noOfCredits, creditPrice, type, entity) => {
     try {
+        console.log("update")
         const greenCreditDoc = await greenCredits.findOne();
         if (!greenCreditDoc) {
             throw new Error("Green credit document not found");
@@ -37,8 +39,10 @@ const UpdateGreenCreditValueFunc = async (personId, noOfCredits, creditPrice, ty
 
         greenCreditDoc.currValue = finalValue;
         await greenCreditDoc.save();
-        await historyChange();
-        
+        console.log("beforeChange")
+        await historyChange(finalValue);
+        console.log("afterChange")
+
         return finalValue;
     } catch (error) {
         console.error(error);
