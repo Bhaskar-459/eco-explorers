@@ -4,15 +4,19 @@ import CompanyToSell from "../../../Database/Schemas/CompanyToSell.js";
 const getTransactionHistoryFunc = async (req, res) => {
     try {
         const email = req.params.email;
+        console.log(email);
         const arr = [];
         
         const companyHistory = await Company.findOne({ companyMail: email });
         const companyToSellHistory = await CompanyToSell.findOne({ email: email });
+        console.log(companyHistory, companyToSellHistory);
 
         if (companyHistory) {
-            arr.push(...companyHistory.transactionHistory);
+            if (companyHistory.transactionHistory) {
+                arr.push(...companyHistory.transactionHistory);
+            }
             
-            if (companyToSellHistory) {
+            if (companyToSellHistory && companyToSellHistory.transactionHistory) {
                 arr.push(...companyToSellHistory.transactionHistory);
             }
 
@@ -29,4 +33,5 @@ const getTransactionHistoryFunc = async (req, res) => {
 }
 
 export default getTransactionHistoryFunc;
+
 

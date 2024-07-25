@@ -21,6 +21,7 @@ const BuyCreditsFunc = async (personId, noOfCredits, creditPrice, entity) => {
         });
         buyList.sort((a, b) => b.price - a.price);
         await greenCreditDoc.save();
+        
         return "No sellers in the market";
     }
 
