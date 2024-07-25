@@ -22,8 +22,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', apiRoutes);
-console.log("hi");
-// mongoose.connect("mongodb://0.0.0.0:27017/")
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('Connected to MongoDB');
