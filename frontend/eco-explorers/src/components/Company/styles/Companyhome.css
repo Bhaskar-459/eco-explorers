@@ -15,45 +15,60 @@
   background-color: #f0f2f5;
 }
 
-.dashboardCompany{
-  flex: 0 0 250px;
+.dashboard{
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 100%;
-  width:100%;
-  background-color: rgb(185, 236, 233); /* Background color */
-  padding: 20px;
-  color: black; /* Text color */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    width: 20%;
+    background-color: rgb(185, 236, 233); /* Background color */
+    padding: 20px;
+    color: black; /* Text color */
 }
 
 .sidebar {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  background-color: #64e8ac;
+  width: 100%;
+    background-color: transparent;
+    margin-top: 20px;
+    font-size: 20px;
 
 }
 
 .sidebar ul {
-  padding: 0;
-  margin: 0;
+  list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin-top: -20px;
 }
 
 .sidebar li {
   padding: 10px 20px;
 }
 
-.sidebar li a {
-  color: white;
+.sidebar ul li  {
+  padding-bottom: 5px; /* Padding to add space inside the list item */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Light partition line */
+}
+.sidebar ul li:last-child {
+  border-bottom: none; /* Remove bottom border for the last item */
+}
+.sidebar ul li a {
   text-decoration: none;
+  color: black;
+  font-size: 1.1em;
+  padding: 10px 20px;
+  display: block; /* Block-level for better clickability */
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+.sidebar ul li a:hover {
+  background-color: #797eec; /* Different background color for active link */
 }
 
-.sidebar li a:hover {
-  text-decoration: underline;
+.sidebar ul li a.active {
+  background-color: #797eec; /* Different background color for active link */
 }
-
 .content {
   flex: 1;
   padding: 20px;
