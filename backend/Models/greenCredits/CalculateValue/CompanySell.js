@@ -30,7 +30,7 @@ const CompanySell = async (id, value, noOfCredits) => {
             }
 
         // await createTransaction({TransactionObj});
-        return 1;
+        return value;
 }
 
 export default CompanySell;

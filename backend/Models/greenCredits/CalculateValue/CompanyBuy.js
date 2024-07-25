@@ -1,7 +1,7 @@
 import company from "../../../Database/Schemas/Company.js";
 import createTransaction from "../../Transactions/createTransaction.js";
 import {v4 as uuidv4} from 'uuid';
-const CompanyBuy = async (companyId, noOfCredits, creditPrice) => {
+const CompanyBuy = async (companyId, creditPrice, noOfCredits) => {
     try {
         // console.log(comp,companyId)
         const comp = await company.findById(companyId);
@@ -28,7 +28,7 @@ const CompanyBuy = async (companyId, noOfCredits, creditPrice) => {
 
         // await createTransaction({ TransactionObj });
 
-        return 1;
+        return creditPrice;
     }
     catch (error) {
         console.error(error);
