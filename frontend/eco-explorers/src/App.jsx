@@ -38,13 +38,15 @@ const App = () => {
   }, []);
   useEffect(()=>
   {
+    // console.log("In the socket")
     socket.connect();
     socket.on('connect', () => {
       console.log('connected ', socket.id)
     });
-    socket.on('creditHistoryChange', ({data,time}) => {
-      setValue(data[-1]);
-    });
+    socket.on('creditHistoryChange', ({ data, time }) => {
+      // console.log("On event:",{data,time})
+      setValue(data[-1])
+  });
     return () => {
       socket.disconnect();
     }
