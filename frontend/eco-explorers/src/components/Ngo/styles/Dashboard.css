@@ -36,7 +36,7 @@
   
   .sidebarNgo ul li a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 1.1em;
     padding: 10px 20px;
     display: block; /* Block-level for better clickability */
@@ -45,11 +45,11 @@
   }
   
   .sidebarNgo ul li a:hover {
-    background-color: #28a745; /* Lighter green on hover */
+    background-color: #797eec; /* Different background color for active link */
   }
   
   .sidebarNgo ul li a.active {
-    background-color: #3e8e41; /* Different background color for active link */
+    background-color: #797eec; /* Different background color for active link */
   }
   
   /* Media Queries for Responsive Design */
