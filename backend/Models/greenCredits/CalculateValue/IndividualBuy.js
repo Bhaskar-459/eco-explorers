@@ -3,7 +3,7 @@ import createTransaction from "../../Transactions/createTransaction.js";
 import updateTransactionHistoryForPeople from "../../Transactions/updateTransactionHistoryForPeople.js";
 import {v4 as uuidv4} from 'uuid';
 
-const IndividualBuy = async (personId, noOfCredits, creditPrice) => {
+const IndividualBuy = async (personId, creditPrice, noOfCredits) => {
     try {
         const person = await People.findById(personId);
         if (!person) {
@@ -23,7 +23,7 @@ const IndividualBuy = async (personId, noOfCredits, creditPrice) => {
         // const savedTransaction = await createTransaction({ TransactionObj: transactionObj });
         await person.save();
         await updateTransactionHistoryForPeople({ TransactionObj: transactionObj }, person, "Buy");
-        return 1;
+        return creditPrice;
     }
     catch (error) {
         console.error(error);

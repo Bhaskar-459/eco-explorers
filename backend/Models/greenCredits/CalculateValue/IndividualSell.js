@@ -21,7 +21,7 @@ const IndividualSell = async (personId, value, noOfCredits) => {
         // await createTransaction({TransactionObj:transactionObj});
         await updateTransactionHistoryForPeople(transactionObj, person, "Sell");
 
-        return 1;
+        return value;
 }
 
 export default IndividualSell;

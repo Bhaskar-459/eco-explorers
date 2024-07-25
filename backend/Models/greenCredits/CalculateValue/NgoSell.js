@@ -21,7 +21,7 @@ const NgoSell = async (ngoId, value,noOfCredits) => {
     });
     await ngo.save();
 
-    return 1;
+    return value;
 }
 
 export default NgoSell;
