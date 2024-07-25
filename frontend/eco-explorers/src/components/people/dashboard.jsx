@@ -29,6 +29,11 @@ const Dashboard = () => {
               Buy
             </Link>
           </li>
+          <li>
+            <Link to="/people/projects" className={location.pathname === '/projects' ? 'active' : ''}>
+              Projects
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>
