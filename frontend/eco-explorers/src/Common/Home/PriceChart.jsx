@@ -50,14 +50,14 @@ const PriceChart = () => {
                 value.setValue(response.data.data[-1]);
                 if (datas.length >= MAX_DATA_POINTS) {
                     setDatas(datas.shift(data.length - MAX_DATA_POINTS));
-                    setDatas([...data, data[-1]]);
+                    
                 }
-
+                setDatas([...data, data[-1]]);
                 if (times.length >= MAX_DATA_POINTS) {
                     setTimes(times.shift(times.length - MAX_DATA_POINTS));
-                    setTimes([...times, new Date().toLocaleString()])
+                   
                 }
-
+                setTimes([...times, new Date().toLocaleString()])
             } catch (error) {
                 console.error("Error fetching initial green credit history: ", error);
             }
