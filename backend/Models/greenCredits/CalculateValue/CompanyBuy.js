@@ -10,13 +10,10 @@ const CompanyBuy = async (companyId, noOfCredits, creditPrice) => {
             throw new Error("Company not found");
         }
         comp.creditsAvailable += noOfCredits;
-        comp.transactionHistory.push({
-            id: comp._id,
-            date: new Date(),
-            creditPrice: creditPrice,
-            noOfCredits: noOfCredits,
-        });
-
+        const lastTransaction = comp.transactionHistory[comp.transactionHistory.length - 1];
+        lastTransaction.credits = noOfCredits;
+        lastTransaction.price = creditPrice;
+        lastTransaction.status = "Executed";
         await comp.save();
 
         const TransactionObj = {
