@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './styles/ListingCredits.css';  // Import the CSS file
+import axios from 'axios';
 
 const ListingCredits = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -8,8 +9,11 @@ const ListingCredits = () => {
   const [creditsToSell, setCreditsToSell] = useState('');
   const [price, setPrice] = useState('');
   let ngoDetails = JSON.parse(localStorage.getItem("ngoDetails"));
+  // console.log(ngoDetails)
   let pass = ngoDetails.personalInfo.password;
-
+  const base_url = import.meta.env.VITE_REACT_APP_API_BASE_URL;
+ 
+  const mailId = ngoDetails.email;
   const handleSellClick = () => {
     setShowPopup(true);
   };
@@ -36,9 +40,31 @@ const ListingCredits = () => {
     setPrice(e.target.value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log(`Credits to Sell: ${creditsToSell}, Expected Price: ${price}`);
+    try {
+      const response = await axios.post(`${base_url}/api/ngo/post/sellCredits`, {
+        email: mailId,
+        noOfCredits: creditsToSell,
+        creditPrice: price,
+      });
+
+      if (response.status === 400) {
+        alert(response.data.message || 'An error occurred.');
+      } else {
+        alert('Credits sold successfully!');
+        window.location.href = '/ngo';
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        alert(error.response.data.message);
+        
+      } else {
+        console.error('Error Selling credits: ', error);
+        alert('An error occurred. Please try again later.');
+      }
+    }
     setCreditsToSell('');
     setPrice('');
   };
