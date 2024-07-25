@@ -1,8 +1,6 @@
 import React from 'react';
 import Dashboard from './Dashboard';
-import MarketScenario from '../../Common/Home/MarketScenario';
-import ListingCredits from './ListingCredits';
-import './NgoHome.css';
+import './styles/NgoHome.css';
 import Header from '../../Common/Home/header';
 import { Routes, Route } from 'react-router-dom';
 import NgoProfile from './NgoProfile';
@@ -11,12 +9,10 @@ import Home from './home';
 import Ngohistory from './Ngohistory';
 function NgoHome() {
   return (
-    <div className="App">
+    <div className="ngomain">
       <Header />
-      <div className="main-content">
-        <Dashboard className="dashboard" />
-        <div className="content">
-          
+      <div className="ngocontent">
+        <Dashboard />
           <div className="second">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -27,7 +23,6 @@ function NgoHome() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

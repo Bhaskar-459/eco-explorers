@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './styles/nav.css';
 const handleSelectChange = (event) => {
     const value = event.target.value;
     if (value === 'NGO') {
         window.location.href = '/loginNgo';
     } else if (value === 'USER') {
         window.location.href = '/loginPeople';
-    } else if (value === 'ORGANISATION') {
+    } else if (value === 'COMPANY') {
         window.location.href = '/loginCompany';
     }
 };
@@ -28,7 +28,7 @@ const Nav = () => {
                         <option value="select">Select an option</option>
                         <option value="NGO">NGO</option>
                         <option value="USER">USER</option>
-                        <option value="ORGANISATION">ORGANISATION</option>
+                        <option value="COMPANY">COMPANY</option>
                     </select>
                     </li>
                 </ul>

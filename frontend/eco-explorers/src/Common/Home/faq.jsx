@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import './faq.css';
+import './styles/faq.css';
 const Faq = () => {
     const [activeIndex, setActiveIndex] = useState(null);
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PriceChart from './PriceChart';
 import { ValueContext } from '../../Value';
-import './MarketScenario.css';
+import './styles/MarketScenario.css';
 
 const MarketScenario = () => {
   const value = useContext(ValueContext);

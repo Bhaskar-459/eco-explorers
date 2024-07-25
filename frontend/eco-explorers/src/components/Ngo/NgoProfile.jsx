@@ -1,5 +1,5 @@
 import React from 'react';
-import './NgoProfile.css'; // Import the CSS file for NgoProfile
+import './styles/NgoProfile.css'; // Import the CSS file for NgoProfile
 import ProfileDetails from './ProfileDetails';
 // import EditFormProfile from './EditFormProfile';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './Dashboard.css'; // Import the new CSS file
+import './styles/Dashboard.css'; // Import the new CSS file
 
 const Dashboard = ({ children }) => {
   const location = useLocation();

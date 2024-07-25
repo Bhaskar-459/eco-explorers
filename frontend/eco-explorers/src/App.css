@@ -1,16 +1,7 @@
-.home-page {
+/* .home-page {
   font-family: Arial, sans-serif;
 }
 
-.navHead {
-  background-color: #4CAF50;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  height:10vh;
-}
 .head{
   position: fixed;
   width: 100%;
@@ -22,27 +13,7 @@
   font-weight: bold;
 }
 
-.nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
 
-.nav li {
-  margin: 0 20px;
-  
-}
-
-.nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.nav a:hover {
-  text-decoration: underline;
-}
 
 .main-content {
   position: relative;
@@ -386,4 +357,4 @@ table td {
   text-align: left;
 }
 
-
+ */

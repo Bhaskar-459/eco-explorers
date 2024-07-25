@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import './info.css';
+import './styles/info.css';
 import insta from '../../assets/insta.png';
 import x from '../../assets/x.png';
 const Info = () => {

@@ -2,7 +2,7 @@ import React from 'react'
 import icfre from '../../assets/icfre.png';
 import moef from '../../assets/moef.png';
 import nationallogo from '../../assets/nationallogo.png';
-import './header.css';
+import './styles/header.css';
  function Header() {
   return (
     <div className="titleBar">

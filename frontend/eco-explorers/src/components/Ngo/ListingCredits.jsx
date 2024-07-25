@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ListingCredits.css';  // Import the CSS file
+import './styles/ListingCredits.css';  // Import the CSS file
 
 const ListingCredits = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,13 +44,12 @@ const ListingCredits = () => {
   };
 
   return (
-    <div className= 'page-container'>
+    // <div className= 'page-container'>
       <div className="listing-credits">
         <h2>Listing Credits</h2>
         {!isAuthenticated && (
           <button onClick={handleSellClick} className="sell-button">Sell</button>
         )}
-        
         {showPopup && (
           <>
             <div className="overlay"></div>
@@ -100,7 +99,7 @@ const ListingCredits = () => {
           </form>
         )}
       </div> 
-    </div>
+    // </div>
   );
 };
 

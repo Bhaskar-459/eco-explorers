@@ -1,0 +1,41 @@
+.contactContent{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    gap:3%;
+    color:black;
+}
+
+.contactContent h1{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.contactContent a{
+    color: black;
+}
+
+.contactdetails{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:10%;
+    height:50%;
+    width:50%;
+}
+.contactname{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    justify-content: left;
+    align-items: center;
+}
+.contactnum{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    justify-content: right;
+    align-items: center;
+}
