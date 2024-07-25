@@ -1,0 +1,19 @@
+.home-page{
+    padding-top: 20vh;
+    font-family: Arial, sans-serif;
+}
+.head{
+    top:0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+.middiv{
+    height: fit-content;
+    /* background-color: rgb(180, 228, 84); */
+    background-color: rgb(122, 255, 182);
+}
+.middiv p{
+    font-size: large;
+    color: #333333;
+}

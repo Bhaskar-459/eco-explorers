@@ -1,5 +1,5 @@
 import React from 'react'
-import './Ngohistory.css';
+import './styles/Ngohistory.css';
 const transactions = [
   {
     transactionid: 1,

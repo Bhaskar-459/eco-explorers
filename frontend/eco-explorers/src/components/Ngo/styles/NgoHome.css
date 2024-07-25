@@ -1,0 +1,39 @@
+*::after,
+*::before,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sidebar
+{
+  background-color: transparent;
+  margin: 10px;
+  
+}
+a
+{
+  text-decoration: none;
+  color: white;
+}
+.ngomain {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  
+  .ngocontent {
+    display: flex;
+    flex: 1;
+  }
+  
+
+  
+  .second {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+  

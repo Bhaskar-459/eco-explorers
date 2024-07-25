@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 100vh;
+    height: 100%;
     width: 20%;
     background-color: rgb(185, 236, 233); /* Background color */
     padding: 20px;

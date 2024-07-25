@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './NgoProfile.css'; // Import the CSS file
+import './styles/NgoProfile.css'; // Import the CSS file
 
 const ProfileDetails = (props) => {
   let ngoDetails = JSON.parse(localStorage.getItem("ngoDetails")) || {};

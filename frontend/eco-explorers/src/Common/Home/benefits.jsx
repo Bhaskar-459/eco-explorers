@@ -1,5 +1,5 @@
 import React from 'react'
-import './benefits.css';
+import './styles/benefits.css';
 const Benefits = () => {
     return (
         <div className='benefit-container'>

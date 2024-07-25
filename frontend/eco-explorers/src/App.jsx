@@ -11,12 +11,8 @@ import SignupPeople from './Common/Signup/PeopleSignup';
 // import NgoPage from './components/Ngo/HomeScreen';
 import './App.css';
 import NgoHome from './components/Ngo/NgoHome';
-import NgoProfile from './components/Ngo/NgoProfile';
 import CompanyHome from './components/Company/CompanyHome';
-import VerifyNgoCredits from './components/Ngo/NgoVerify';
-import VerifyGCP from './components/Company/VerifyGCP';
 import PeopleHome from './components/people/PeopleHome';
-import CompanyProfile from './components/Company/CompanyProfile';
 import axios from 'axios';
 
 // import Frontend from './Common/WebSocket/DividedComponent';

@@ -1,7 +1,7 @@
 // VerifyNgoCredits.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import './NgoVerify.css';
+import './styles/NgoVerify.css';
 
 const VerifyNgoCredits = () => {
     const [certificateId, setCertificateId] = useState('');
