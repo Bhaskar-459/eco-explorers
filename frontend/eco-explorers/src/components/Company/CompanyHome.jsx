@@ -6,7 +6,7 @@ import VerifyGCP from './VerifyGCP';
 import RegisterGcp from './RegisterGcp';
 import Home from './home';
 import Header from '../../Common/Home/header';
-import './styles/CompanyHome.css';
+import './styles/Companyhome.css';
 import CompanyHistory from './companyhistory';
 
 const CompanyHome = props => {

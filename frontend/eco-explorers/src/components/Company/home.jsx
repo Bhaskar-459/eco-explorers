@@ -2,7 +2,7 @@ import React from 'react'
 import MarketScenario from '../../Common/Home/MarketScenario';
 import BuyCredits from './BuyCredits';
 import SellCredits from './SellCredits';
-import './styles/CompanyHome.css';
+import './styles/Companyhome.css';
 
 
 const Home = () => {
