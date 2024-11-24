@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './styles/CompanyHome.css';
+import './styles/Companyhome.css';
 
 const Dashboard = ({ children }) => {
   return (
